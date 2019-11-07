@@ -1,2 +1,2 @@
 # DSA-project
-hi teresa 
+hi theresa
