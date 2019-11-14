@@ -8,11 +8,11 @@
  * @version: 2019.10.08
  */
 
-public class MyListReferenceBased<T> implements ListInterface<T>
+public class ListReferenceBased<T> implements ListInterface<T>
 {
     private Node<T> head;
 
-    public MyListReferenceBased()
+    public ListReferenceBased()
     {
         head = null;
     }
