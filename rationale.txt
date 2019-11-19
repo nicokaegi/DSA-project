@@ -1,0 +1,102 @@
+ Looking at this project, we decided to split it up into its component operations.  Our most common operations would be adding and removing planes from runways, as well as searching when we enter things into the list of flights needed to clear.  
+
+We plan to use three ADTs, as follows:
+    ListRAB runways (we originally thought of using a CDLS, until we realized that using a list with a position integer updated via a modulus avoids repeated traversal)
+    ListRAB clearance (direct index access for sorting and searching - our intent is to sort flights into that list by lexicographic order of flight names)
+    QueueSLS Planes (held in Runway class, we only need to care about the front for taking off, and the back for adding new planes)
+
+4-5 classes would be created(depending on us doing the extra credit):
+
+To hold all the information regarding planes themselves, we have the plane class.  They hold the name of their runway for convenience with the clearance list, essentially.  When we remove them from their runway, we want to maintain what runway they came from for putting them back in, later.  It is worth the space tradeoff to hold the runway name.  This also makes the toString method more convenient.
+
+Plane:
+        String flightNumber
+        String destination
+        String runway
+        toString()
+        Accessers and Mutators
+
+We also need a runway object - This runway holds its name, a queue of all the planes on it, as well as methods to manipulate the planes on the runway (basically just add/remove methods for accessing the queue.)  This also as it stands exists to be inherited from.
+
+Runway:
+        String name
+        queueSLS planes
+        toString
+        add/remove plane
+        Accessers and mutators
+
+Related to the runway class, we have the TakeOff and Landing classes:  These are intended to hold operations that ONLY affect either takeoff or landing.  We will likely fold takeoff into runway, if we do not end up doing the extra credit, but we felt it wiser to plan for them from the beginning.
+
+Finally, we are making an AirTrafficControl object - This is with future expandability in mind - potentially the ability to control several airports from one location.  This also makes the driver cleaner.  This class will hold our list (Array based) of runways.  We chose ListRAB because we want the direct index access offered by it.  This will make the round robin style of takeoff easier to deal with.  We also hold a list, also array based (for direct index access - we are sorting this lexicographically by flight number, so that when we search for flight numbers, it will take less work overall.  This will make the option to change runways slightly more of a pain, but with evaluation, it was determined that searching for a flight number to take something off of this list would be more common than closing a runway, so we optimize for the more common operation.
+
+AirTrafficControl:
+        ListRAB runways
+        ListRAB clearance
+        Int count
+        Int position
+Driver:
+    BufferedReader stdin
+    
+Program flow:
+Initialization:  
+Ask user for:     number of runways        
+Run loop to create initial list of runways
+    Prompt user for name of each runway
+Load menu.
+Option 1:
+    Ask user for:     flight number
+            destination    
+            Runway
+            Check for runway’s existence.  If non-existant, prompt for new
+Runway
+    If runway exists:
+        Create plane with flight number, destination, runway
+        Enqueue plane to runway.
+
+Option 2:
+    Check runway list (using position to access the index)  to get runway we are launching from
+    Dequeue plane into a temp plane.
+        Ask user if flight # is cleared for takeoff.
+            If yes:
+                Increment position counter
+                Increment plane takeoff count
+            If no:
+                Add plane to clearance list
+
+Option 3:
+    Ask user for flight number
+    Binary search clearance list for flight number
+        Read the plane’s runway (this is why we store the runway in the plane)
+        Find the runway in the runway list
+        Enqueue plane to runway
+
+Option 4: 
+    Ask user for runway name
+    Add runway to end of runway list
+
+Option 5:
+    Ask user what runway to close
+        Check for runway existence
+    Loop one:
+        Until runway is empty
+            Dequeue from runway into temp plane
+            Ask user for new runway
+                Check for runway existence
+            Set temp plane’s runway to the new runway
+            Enqueue temp plane to runway
+    Loop two:
+        Sequential search clearance list for runway
+            Ask user for new runway
+                Check for runway existence
+            Set plane’s runway to the new runway
+    Delete runway from runway list
+
+Option 6:
+    Parse through runway list
+        Use toString method in runway to print out each runway’s planes
+
+Option 7: 
+    Parse through clearance list
+        Use toString method in planes to print each plane’s information
+Option 8: 
+    Print our counter variable.
