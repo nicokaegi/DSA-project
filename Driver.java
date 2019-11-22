@@ -1,11 +1,12 @@
 /*
- * Purpose: Data Structure and Algorithms Midterm
+ * Purpose: Data Structure and Algorithms Project
  * Status: Barely started
- * Last update: 10/09/19
- * Submitted:  10/18/19
+ * Last update: 11/21/19
+ * Submitted:  12/05/19
  * Comment: test suite and sample run attached
  * @author: Theresa Morris - Section 2
- * @version: 2019.10.09
+ * @author: Nico Kaegi - Section 2
+ * @version: 2019.11.21
  */
 
 import java.io.*;
@@ -14,9 +15,8 @@ public class Driver
 {
     static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String args[]) throws IOException, InstantiationException, ClassNotFoundException, IllegalAccessException
+    public static void main(String args[]) throws IOException
     {
-        String ADTType = args[0];
         //line here to declare data structure
         Boolean quit = false;
 
