@@ -37,5 +37,14 @@ public class Runway
 	    return "Runway [name=" + name + ", planes=" + planes + "]";
 	}
     
+    public void enqueueToRunway(Plane plane)
+    {
+	planes.enqueue(plane);
+    }
+    
+    public Plane dequeueFromRunway()
+    {
+	return planes.dequeue();
+    }
 
 }

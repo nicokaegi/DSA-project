@@ -19,17 +19,19 @@ public class Driver
     {
         //line here to declare data structure
         Boolean quit = false;
+        AirTrafficControl atc = new AirTrafficControl();
 
         //Initial menu list
         System.out.println("Select from the following menu: ");
-        System.out.println("\t1. ");
-        System.out.println("\t2. ");
-        System.out.println("\t3. ");
-        System.out.println("\t4. ");
-        System.out.println("\t5. ");
-        System.out.println("\t6. ");
-        System.out.println("\t7. ");
-        System.out.println("\t8. ");
+        System.out.println("\t0. End the program");
+        System.out.println("\t1. Plane enters the system.");
+        System.out.println("\t2. Plane takes off.");
+        System.out.println("\t3. Plane is allowed to re-enter a runway.");
+        System.out.println("\t4. Runway opens.");
+        System.out.println("\t5. Runway closes.");
+        System.out.println("\t6. Display info about planes waiting to take off.");
+        System.out.println("\t7. Display info about planes waiting to be allowed to re-enter a runway.");
+        System.out.println("\t8. Display number of planes who have taken off.");
 
         while (!quit)
         {
@@ -39,11 +41,15 @@ public class Driver
 
             switch(menu)
             {
+        	case 0:
+        	    quit = true;
+        	    break;
             case 1:
                 break;
             case 2:
                 break;
             case 3:
+        	reEnterPlane(atc);
                 break;
             case 4:
                 break;
@@ -60,10 +66,22 @@ public class Driver
             }//end switch
             if (quit)
             {
-                System.out.println("Exiting program... Good Bye.");
+                System.out.println("The Airport is closing : Bye Bye....");
                 System.exit(0);
             }
         }//end while
 
     }// End main
+    
+    private static void reEnterPlane(AirTrafficControl atc) throws IOException
+    {
+	System.out.print("Enter flight number : ");
+	String flight = stdin.readLine();
+	System.out.println(flight);
+	
+	atc.reEnterRunway(flight);
+	
+	
+	    
+    }
 }

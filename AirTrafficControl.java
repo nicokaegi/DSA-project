@@ -61,5 +61,39 @@ public class AirTrafficControl
     	this.position = position;
         }
     
+    public void reEnterRunway(String flight)
+    {
+	Plane tempPlane = verifyRunway(flight);
+	
+	if(tempPlane != null)
+	    {
+		Runway tempRunway = matchRunway(tempPlane.getRunway());
+		
+		tempRunway.enqueueToRunway(tempPlane);
+		
+		//clearance.remove();
+	    }
+	else
+	    {
+		System.out.println("Flight " + flight + " is not waiting for clearance.");
+	    }
+    }
+    
+    private Plane verifyRunway(String flight)
+	{
+    //I'm still working on this function, however I want this to be able to at least not spit out errors.
+    //Basically I got another idea and am gonna run with it.
+	    return null;
+	}
+
+    private Runway matchRunway(String runway)
+    {
+	Runway retrievedRunway = null;
+	
+	return retrievedRunway;
+    }
+    
+    
+    
     
 }
