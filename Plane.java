@@ -3,7 +3,7 @@ public class Plane
     private String flightNumber;
     private String destination;
     private String runway;
-    
+
     public Plane(String flight, String dest, String run)
     {
 	flightNumber = flight;
@@ -64,7 +64,7 @@ public class Plane
 	{
 	    return "Plane [flightNumber=" + flightNumber + ", destination=" + destination + ", runway=" + runway + "]";
 	}
-    
-    
-    
+
+
+
 }

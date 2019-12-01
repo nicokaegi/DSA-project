@@ -39,17 +39,31 @@ public class Driver
             int menu = Integer.parseInt(stdin.readLine());
             System.out.println(menu);
 
+            String flightNumber;
+
+            String destination;
+
+            String runway;
+
+            boolean succeful;
+
             switch(menu)
             {
         	case 0:
         	    quit = true;
         	    break;
             case 1:
+
+                System.out.println("1 : plane entering system please enter flight number, destination, and take off run way");
+
+                succeful = AirTrafficControl.enterAirPlane(new plane(stdin.readLine(),stdin.readLine(),stdin.readLine()));
+
                 break;
             case 2:
                 break;
             case 3:
-        	reEnterPlane(atc);
+
+        	     AirTrafficControl.reEnterPlane(atc);
                 break;
             case 4:
                 break;
@@ -72,16 +86,16 @@ public class Driver
         }//end while
 
     }// End main
-    
+
     private static void reEnterPlane(AirTrafficControl atc) throws IOException
     {
 	System.out.print("Enter flight number : ");
 	String flight = stdin.readLine();
 	System.out.println(flight);
-	
+
 	atc.reEnterRunway(flight);
-	
-	
-	    
+
+
+
     }
 }

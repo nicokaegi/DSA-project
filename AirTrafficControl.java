@@ -3,7 +3,7 @@ public class AirTrafficControl
     private ListArrayBasedPlus<Runway> runways;
     private ListArrayBasedPlus<Plane> clearance;
     private int count = 0;
-    private int position = 0;
+    private int setToTakeOf = 0;// assuming position refered to runways
     /**
      * @return the runways
      */
@@ -11,6 +11,27 @@ public class AirTrafficControl
         {
     	return runways;
         }
+
+    public boolean enterAirPlane(Plane newPlane){
+
+      //it's boolean because im to lazy to add trycatch blocks
+      //create a new excpetion; plus this provideds a easy way to exit the method;
+
+      for(int pos = 0; pos < runways.size(); pos++){
+
+            if(runways.get(pos).getName().equals(newPlane.getRunway())){
+
+                    runways.enqueueToRunway(newPlane);
+
+                    return true;
+
+            }
+
+            return false;
+
+      }
+
+    }
     /**
      * @return the clearance
      */
@@ -60,17 +81,17 @@ public class AirTrafficControl
         {
     	this.position = position;
         }
-    
+
     public void reEnterRunway(String flight)
     {
 	Plane tempPlane = verifyRunway(flight);
-	
+
 	if(tempPlane != null)
 	    {
 		Runway tempRunway = matchRunway(tempPlane.getRunway());
-		
+
 		tempRunway.enqueueToRunway(tempPlane);
-		
+
 		//clearance.remove();
 	    }
 	else
@@ -78,7 +99,7 @@ public class AirTrafficControl
 		System.out.println("Flight " + flight + " is not waiting for clearance.");
 	    }
     }
-    
+
     private Plane verifyRunway(String flight)
 	{
     //I'm still working on this function, however I want this to be able to at least not spit out errors.
@@ -89,11 +110,11 @@ public class AirTrafficControl
     private Runway matchRunway(String runway)
     {
 	Runway retrievedRunway = null;
-	
+
 	return retrievedRunway;
     }
-    
-    
-    
-    
+
+
+
+
 }
