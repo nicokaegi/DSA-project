@@ -165,11 +165,24 @@ public class Driver
 
     private static void openRunway(AirTrafficControl atc) throws IOException
     {
+    	System.out.print("Enter the name of the new runway : ");
+    	String newRunway = stdin.readLine();
+    	System.out.print(newRunway);
+    	
+    	if(atc.addRunWay(newRunway))
+    	{
+    		System.out.println("Runway " + newRunway + " has opened.");
+    	}
+    	else
+    	{
+    		System.out.println("Runway " + newRunway + " already existsm please choose another name.");
+    	}
 
     }// end openRunway
 
     private static void closeRunway(AirTrafficControl atc) throws IOException
     {
+    	
 
     }// end closeRunway
 }

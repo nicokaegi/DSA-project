@@ -173,7 +173,7 @@ public class AirTrafficControl
 
     public void reEnterRunway(String flight)
     {
-        Plane tempPlane = verifyRunway(flight);
+        Plane tempPlane = getFromClearance(flight);
 
         if (tempPlane != null)
         {
@@ -188,9 +188,11 @@ public class AirTrafficControl
         }
     }
 
-    private Plane verifyRunway(String flight)
+    private Plane getFromClearance(String flight)
     {
-    	return runways.search(flight);
+    	//clearance.search(flight);
+    	
+    	return null;
     }
     /*
      Not using htis because find runway is the same thing.
