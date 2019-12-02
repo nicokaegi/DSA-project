@@ -194,6 +194,12 @@ public class AirTrafficControl
     	
     	return null;
     }
+    
+    public void runwayClosure(String oldRunway, String newRunway)
+    {
+    	
+    	
+    }
     /*
      Not using htis because find runway is the same thing.
 
@@ -204,7 +210,29 @@ public class AirTrafficControl
     	return retrievedRunway;
         }
     */
+    
+    public void printCount()
+    {
+    	System.out.println(count + " planes have taken off from the airport");
+    }
 
+    public void printClearance()
+    {
+    	for(int i = 0; i < clearance.size(); i++)
+    	{
+    		System.out.println(clearance.get(i).toString());
+    	}
+    }
+    
+    public void printRunways()
+    {
+    	for(int i = 0; i < runways.size(); i++)
+    	{
+    		System.out.println("These planes are waiting for takeoff on runway " + runways.get(i).getName());
+    		runways.get(i).toString();		
+    	}
+    }
+   
 
 
 }

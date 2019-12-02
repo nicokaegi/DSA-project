@@ -65,7 +65,7 @@ public class Plane<KT> extends KeyedItem<String>
     @Override
     public String toString()
     {
-        return "Plane [flightNumber=" + flightNumber + ", destination=" + destination + ", runway=" + runway + "]";
+        return "Flight " + flightNumber + " to " + destination + ".";
     }
 
 

@@ -122,7 +122,6 @@ public class Driver
                 break;
             case 3:
                 reEnterPlane(atc);
-                // atc.reEnterPlane(atc);
                 break;
             case 4:
                 openRunway(atc);
@@ -131,10 +130,13 @@ public class Driver
                 closeRunway(atc);
                 break;
             case 6:
+            	atc.printRunways();
                 break;
             case 7:
+            	atc.printClearance();
                 break;
             case 8:
+            	atc.printCount();
                 break;
             default:
                 System.out.println("\n\tInvalid input - Make your menu selection now : ");
@@ -182,6 +184,15 @@ public class Driver
 
     private static void closeRunway(AirTrafficControl atc) throws IOException
     {
+    	System.out.print("Enter runway: ");
+    	String oldRunway = stdin.readLine();
+    	System.out.println(oldRunway);
+    	
+    	System.out.print("Enter runway: ");
+    	String newRunway = stdin.readLine();
+    	System.out.println(newRunway);
+    	
+    	atc.runwayClosure(oldRunway, newRunway);
     	
 
     }// end closeRunway

@@ -43,7 +43,8 @@ public class Runway
     @Override
     public String toString()
     {
-        return "Runway [name=" + name + ", planes=" + planes + "]";
+    	
+        return planes.toString();
     }
 
     public void enqueueToRunway(Plane plane)
@@ -57,7 +58,6 @@ public class Runway
         return planes.peek();
 
     }
-
 
     public Plane dequeueFromRunway()
     {
