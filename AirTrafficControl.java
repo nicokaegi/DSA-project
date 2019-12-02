@@ -1,9 +1,18 @@
 import dependencies.AscendinglyOrderedList;
 import dependencies.ListArrayBasedPlus;
 
-/**
- * @author Melody
+/*
+ * Purpose: Data Structure and Algorithms Project
+ * Status: Barely started
+ * Last update: 12/02/19
+ * Submitted: 12/05/19
+ * Comment: test suite and sample run attached
  *
+ * @author: Theresa Morris - Section 2
+ *
+ * @author: Nico Kaegi - Section 2
+ *
+ * @version: 2019.12.02 AirTrafficControl.java
  */
 public class AirTrafficControl
 {
@@ -181,9 +190,7 @@ public class AirTrafficControl
 
     private Plane verifyRunway(String flight)
     {
-        //I'm still working on this function, however I want this to be able to at least not spit out errors.
-        //Basically I got another idea and am gonna run with it.
-        return null;
+    	return runways.search(flight);
     }
     /*
      Not using htis because find runway is the same thing.

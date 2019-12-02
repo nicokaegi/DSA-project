@@ -128,7 +128,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         //0,0 check, which messes EVERYTHING up.
         if (numItems == 1)
         {
-            if(item.toString().compareTo(items[mid].toString()) > 0)
+            if(item.compareTo(items[mid]) > 0)
             {
                 return 1;
             }
@@ -141,7 +141,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         while (low < high)
         {
             mid = (low + high)/2;
-            if(item.toString().compareTo(items[mid].toString()) > 0)
+            if(item.compareTo(items[mid]) > 0)
             {
                 low = mid + 1;
             }
@@ -159,7 +159,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         else
         {
             success = false;
-            if(item.toString().compareTo(items[low].toString()) > 0)
+            if(item.compareTo(items[low]) > 0)
             {
                 return high + 1;
             }
