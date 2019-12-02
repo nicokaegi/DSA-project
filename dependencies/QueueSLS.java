@@ -87,7 +87,7 @@ public class QueueSLS<T> implements QueueInterface<T>
 
         while (curr != null)
         {
-            buildList.append(curr.getItem().toString() + " ");
+            buildList.append(curr.getItem().toString() + "\n ");
             curr = curr.getNext();
         }
 

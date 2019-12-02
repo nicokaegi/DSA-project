@@ -233,7 +233,7 @@ public class AirTrafficControl
     	for(int i = 0; i < runways.size(); i++)
     	{
     		System.out.println("These planes are waiting for takeoff on runway " + runways.get(i).getName());
-    		runways.get(i).toString();		
+    		System.out.print(runways.get(i).toString());		
     	}
     }
    
