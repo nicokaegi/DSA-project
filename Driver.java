@@ -45,7 +45,7 @@ public class Driver
 
         Plane planeHolder;
 
-        for (int pos = 0; pos <= intHolder; pos++)
+        for (int pos = 1; pos <= intHolder; pos++)
         {
 
             System.out.println(pos + " runway name ?");

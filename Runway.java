@@ -12,6 +12,7 @@ public class Runway
     public Runway(String name) {
 
         this.name = name;
+        planes = new QueueSLS<Plane>();
 
     }
 
@@ -43,8 +44,14 @@ public class Runway
     @Override
     public String toString()
     {
-    	
-        return planes.toString();
+    	if(!planes.isEmpty())
+    	{
+    		return planes.toString();
+    	}
+    	else
+    	{
+    		return " ";
+    	}
     }
 
     public void enqueueToRunway(Plane plane)
