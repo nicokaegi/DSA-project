@@ -6,6 +6,13 @@ public class Runway
     /**
      * @return the name
      */
+    
+    public Runway(String name){
+    
+    	this.name = name;
+    
+    }
+    
     public String getName()
         {
     	return name;

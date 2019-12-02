@@ -1,3 +1,5 @@
+package dependencies;
+
 /*
  * Purpose: Data Structure and Algorithms Lab 8 Problem 3
  * Status: Complete and thoroughly tested

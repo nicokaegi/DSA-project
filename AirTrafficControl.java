@@ -3,7 +3,7 @@ public class AirTrafficControl
     private ListArrayBasedPlus<Runway> runways;
     private ListArrayBasedPlus<Plane> clearance;
     private int count = 0;
-    private int setToTakeOf = 0;// assuming position refered to runways
+    private int position = 0;// assuming position refered to runways
     /**
      * @return the runways
      */
@@ -12,29 +12,65 @@ public class AirTrafficControl
     	return runways;
         }
 
+    public Runway findRunway(String runwayName){
+    
+	for(int pos = 0; pos < runways.size(); pos++){
+	
+		if(runways.get(pos).getName().equals(runwayName)){
+		
+			return runways.get(pos);
+		}
+	
+	}
+
+	return null;	
+
+    }
+    
     public boolean enterAirPlane(Plane newPlane){
 
       //it's boolean because im to lazy to add trycatch blocks
       //create a new excpetion; plus this provideds a easy way to exit the method;
 
-      for(int pos = 0; pos < runways.size(); pos++){
+		Runway temp = findRunway(newPlane.getRunway());
 
-            if(runways.get(pos).getName().equals(newPlane.getRunway())){
+		if(temp != null){
+		
+			temp.enqueueToRunway(newPlane);
 
-                    runways.enqueueToRunway(newPlane);
-
-                    return true;
-
-            }
-
-            return false;
-
+			return true;	
+		
+		}
+		else{
+		
+			return false;
+		
+		}	
       }
 
     }
     /**
      * @return the clearance
      */
+
+    public boolean addRunWay(String name){
+    
+    		if(findRunway(name) == null){
+		
+
+			runways.add(runways.size(), new runway(name));
+		
+			return true;		
+		
+		}
+		else{
+		
+		 	return false;
+		
+		}
+    
+    }
+
     public ListArrayBasedPlus<Plane> getClearance()
         {
     	return clearance;
@@ -49,7 +85,7 @@ public class AirTrafficControl
     /**
      * @return the position
      */
-    public int getPosition()
+    public int getPositioni()
         {
     	return position;
         }

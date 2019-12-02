@@ -6,7 +6,7 @@
  * Comment: test suite and sample run attached
  * @author: Theresa Morris - Section 2
  * @author: Nico Kaegi - Section 2
- * @version: 2019.11.21
+ * @version: 2019.11.21 AirTrafficControl.java
  */
 
 import java.io.*;
@@ -20,6 +20,43 @@ public class Driver
         //line here to declare data structure
         Boolean quit = false;
         AirTrafficControl atc = new AirTrafficControl();
+
+        String flightNumber;
+
+        String destination;
+
+        String runway;
+
+        boolean succeful;
+
+	int intHolder;
+
+	String stringHolder;
+
+	System.out.println("how many runways ?");
+
+	intHolder = Integer.parseInt(stdin.readLine());
+
+	
+
+	for(int pos = 0; pos <= intHolder; pos++){
+	
+		System.out.println(pos + " runway name ?")	
+	
+		stringHolder = stdin.readLine();	
+	
+		if(act.addRunWay(name)){
+		
+			System.out.println("success");
+		
+		}	
+		else{
+		
+			System.out.println("error not uniqe name please try again");
+			intHolder++;
+		}
+	
+	}
 
         //Initial menu list
         System.out.println("Select from the following menu: ");
@@ -39,15 +76,8 @@ public class Driver
             int menu = Integer.parseInt(stdin.readLine());
             System.out.println(menu);
 
-            String flightNumber;
-
-            String destination;
-
-            String runway;
-
-            boolean succeful;
-
-            switch(menu)
+            
+	    switch(menu)
             {
         	case 0:
         	    quit = true;
@@ -56,14 +86,17 @@ public class Driver
 
                 System.out.println("1 : plane entering system please enter flight number, destination, and take off run way");
 
-                succeful = AirTrafficControl.enterAirPlane(new plane(stdin.readLine(),stdin.readLine(),stdin.readLine()));
+                succeful = atc.enterAirPlane(new Plane(stdin.readLine(),stdin.readLine(),stdin.readLine()));
 
                 break;
             case 2:
+
+		
+
                 break;
             case 3:
 
-        	     AirTrafficControl.reEnterPlane(atc);
+        	     //atc.reEnterPlane(atc);
                 break;
             case 4:
                 break;
