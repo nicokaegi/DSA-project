@@ -16,8 +16,8 @@ import dependencies.ListArrayBasedPlus;
  */
 public class AirTrafficControl
 {
-    private ListArrayBasedPlus<Runway> runways;
-    private AscendinglyOrderedList<Plane<?>, String> clearance;
+    private ListArrayBasedPlus<Runway> runways = new ListArrayBasedPlus<Runway>();
+    private AscendinglyOrderedList<Plane<?>, String> clearance = new AscendinglyOrderedList<Plane<?>, String>();
     private int count = 0;
     private int position = 0;// This is our position in the runway list.
     private int totalRunways = 0;//need this to keep adding runways to the end of the list.
