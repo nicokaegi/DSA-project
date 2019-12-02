@@ -1,3 +1,5 @@
+package dependencies;
+
 public interface ExtendedQueueInterface<T> extends QueueInterface<T>{
   public void enqueueFirst(T newItem) throws ExtendedQueueException;
   public T dequeueLast() throws ExtendedQueueException;

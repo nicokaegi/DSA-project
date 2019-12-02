@@ -1,3 +1,4 @@
+package dependencies;
 public interface StackInterface<T> {
     public boolean isEmpty();
     // Determines whether the stack is empty.

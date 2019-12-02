@@ -1,4 +1,6 @@
-public class Plane
+import dependencies.KeyedItem;
+
+public class Plane<KT> extends KeyedItem<String>
 {
     private String flightNumber;
     private String destination;
@@ -6,6 +8,7 @@ public class Plane
 
     public Plane(String flight, String dest, String run)
     {
+	super(flight);
 	flightNumber = flight;
 	destination = dest;
 	runway = run;

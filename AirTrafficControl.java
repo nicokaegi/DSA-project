@@ -1,7 +1,10 @@
+import dependencies.AscendinglyOrderedList;
+import dependencies.ListArrayBasedPlus;
+
 public class AirTrafficControl
 {
     private ListArrayBasedPlus<Runway> runways;
-    private ListArrayBasedPlus<Plane> clearance;
+    private AscendinglyOrderedList<Plane<?>, String> clearance;
     private int count = 0;
     private int position = 0;// assuming position refered to runways
     /**
@@ -87,7 +90,8 @@ public class AirTrafficControl
 	}else{
 		
 		//this is temporary since i belive you had an idea to make this more effeciant
-		clearance.add(clearance.size(),runways.get(position).dequeueFromRunway());
+	    //I HOPEFULLY have the ascendingly ordered list genericed, so adding to it we just add and it'll sort in fine.
+		clearance.add(runways.get(position).dequeueFromRunway());
 	
                 position = (position + 1) % runways.size();	
 	
@@ -95,7 +99,7 @@ public class AirTrafficControl
     
     }
 
-    public ListArrayBasedPlus<Plane> getClearance()
+    public AscendinglyOrderedList<Plane<?>, String> getClearance()
         {
     	return clearance;
         }
@@ -123,7 +127,7 @@ public class AirTrafficControl
     /**
      * @param clearance the clearance to set
      */
-    public void setClearance(ListArrayBasedPlus<Plane> clearance)
+    public void setClearance(AscendinglyOrderedList<Plane<?>, String> clearance)
         {
     	this.clearance = clearance;
         }
@@ -142,22 +146,21 @@ public class AirTrafficControl
     	this.position = position;
         }
 
-    public void reEnterRunway(String flight)
-    {
-	Plane tempPlane = verifyRunway(flight);
-
-	if(tempPlane != null)
+	public void reEnterRunway(String flight)
 	    {
-		Runway tempRunway = findRunway(tempPlane.getRunway());
+		Plane tempPlane = verifyRunway(flight);
 
-		tempRunway.enqueueToRunway(tempPlane);
+		if (tempPlane != null)
+		    {
+			Runway tempRunway = findRunway(tempPlane.getRunway());
 
-		//clearance.remove();
-	    }
-	else
-	    {
-		System.out.println("Flight " + flight + " is not waiting for clearance.");
-	    }
+			tempRunway.enqueueToRunway(tempPlane);
+
+			// clearance.remove();
+		    } else
+		    {
+			System.out.println("Flight " + flight + " is not waiting for clearance.");
+		    }
     }
 
     private Plane verifyRunway(String flight)

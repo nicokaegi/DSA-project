@@ -1,3 +1,4 @@
+package dependencies;
 public class ExtendedQueueException extends RuntimeException {
 
   public ExtendedQueueException(String s) {
