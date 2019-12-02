@@ -1,5 +1,6 @@
 import dependencies.AscendinglyOrderedList;
 import dependencies.ListArrayBasedPlus;
+import dependencies.MyBinarySearchTreePlus;
 
 /*
  * Purpose: Data Structure and Algorithms Project
@@ -17,7 +18,7 @@ import dependencies.ListArrayBasedPlus;
 public class AirTrafficControl
 {
     private ListArrayBasedPlus<Runway> runways = new ListArrayBasedPlus<Runway>();
-    private AscendinglyOrderedList<Plane<?>, String> clearance = new AscendinglyOrderedList<Plane<?>, String>();
+    private MyBinarySearchTreePlus<Plane<?>, String> clearance = new MyBinarySearchTreePlus<Plane<?>, String>();
     private int count = 0;
     private int position = 0;// This is our position in the runway list.
     private int totalRunways = 0;//need this to keep adding runways to the end of the list.
@@ -116,7 +117,7 @@ public class AirTrafficControl
 
             //this is temporary since i belive you had an idea to make this more effeciant
             //I HOPEFULLY have the ascendingly ordered list genericed, so adding to it we just add and it'll sort in fine.
-            clearance.add(runways.get(position).dequeueFromRunway());
+            clearance.insert(runways.get(position).dequeueFromRunway());
 
             position = (position + 1) % runways.size();
 
@@ -124,7 +125,7 @@ public class AirTrafficControl
 
     }
 
-    public AscendinglyOrderedList<Plane<?>, String> getClearance()
+    public MyBinarySearchTreePlus<Plane<?>, String> getClearance()
     {
         return clearance;
     }
@@ -152,7 +153,7 @@ public class AirTrafficControl
     /**
      * @param clearance the clearance to set
      */
-    public void setClearance(AscendinglyOrderedList<Plane<?>, String> clearance)
+    public void setClearance(MyBinarySearchTreePlus<Plane<?>, String> clearance)
     {
         this.clearance = clearance;
     }
@@ -218,10 +219,13 @@ public class AirTrafficControl
 
     public void printClearance()
     {
-    	for(int i = 0; i < clearance.size(); i++)
+    	System.out.println("These planes are waiting to be cleared to re-enter a runway:");
+    	System.out.println(clearance.toStringInorder());
+    	/*for(int i = 0; i < clearance.size(); i++)
     	{
     		System.out.println(clearance.get(i).toString());
     	}
+    	*/
     }
     
     public void printRunways()

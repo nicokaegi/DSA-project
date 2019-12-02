@@ -135,7 +135,7 @@ public class MyBinarySearchTreePlus <T extends KeyedItem<KT>, KT extends Compara
             return null;
         }
         makeStringInOrder(tnode.getLeftChild(),buildList);
-        buildList.append(tnode.getItem().getKey() + " ");
+        buildList.append(tnode.getItem().toString() + "\n ");
         makeStringInOrder(tnode.getRightChild(),buildList);
 
         return buildList.toString();
@@ -156,7 +156,7 @@ public class MyBinarySearchTreePlus <T extends KeyedItem<KT>, KT extends Compara
         {
             return null;
         }
-        buildList.append(tnode.getItem().getKey() + " ");
+        buildList.append(tnode.getItem().toString() + "\n ");
         makeStringInOrder(tnode.getLeftChild(),buildList);
         makeStringInOrder(tnode.getRightChild(),buildList);
         return buildList.toString();
@@ -178,7 +178,7 @@ public class MyBinarySearchTreePlus <T extends KeyedItem<KT>, KT extends Compara
         }
         makeStringInOrder(tnode.getLeftChild(), buildList);
         makeStringInOrder(tnode.getRightChild(), buildList);
-        buildList.append(tnode.getItem().getKey() + " ");
+        buildList.append(tnode.getItem().toString() + "\n ");
         return buildList.toString();
     }
 
