@@ -48,7 +48,15 @@ public class Runway
     {
 	planes.enqueue(plane);
     }
+
+    public Plane peekRunway()
+    {
     
+    	return planes.peek();
+    
+    }
+
+
     public Plane dequeueFromRunway()
     {
 	return planes.dequeue();

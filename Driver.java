@@ -37,15 +37,15 @@ public class Driver
 
 	intHolder = Integer.parseInt(stdin.readLine());
 
-	
+	Plane planeHolder;
 
 	for(int pos = 0; pos <= intHolder; pos++){
 	
-		System.out.println(pos + " runway name ?")	
+		System.out.println(pos + " runway name ?");	
 	
 		stringHolder = stdin.readLine();	
 	
-		if(act.addRunWay(name)){
+		if(atc.addRunWay(stringHolder)){
 		
 			System.out.println("success");
 		
@@ -91,7 +91,22 @@ public class Driver
                 break;
             case 2:
 
+		planeHolder = atc.currentTakeOfPlane();
+
+		System.out.println("is " + planeHolder.getFlightNumber() + "  cleared for take off Y/N");
+
+		stringHolder = stdin.readLine();
+
+		if(stringHolder.equals('y') || stringHolder.equals('Y')){
 		
+			atc.takeOff(true);
+		
+		}
+		else{
+		
+			atc.takeOff(false);
+		
+		}
 
                 break;
             case 3:

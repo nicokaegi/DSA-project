@@ -46,7 +46,7 @@ public class AirTrafficControl
 			return false;
 		
 		}	
-      }
+      
 
     }
     /**
@@ -58,7 +58,7 @@ public class AirTrafficControl
     		if(findRunway(name) == null){
 		
 
-			runways.add(runways.size(), new runway(name));
+			runways.add(runways.size(), new Runway(name));
 		
 			return true;		
 		
@@ -68,6 +68,30 @@ public class AirTrafficControl
 		 	return false;
 		
 		}
+    
+    }
+
+    public Plane currentTakeOfPlane(){
+
+	    return runways.get(position).peekRunway();
+    }
+
+    public void takeOff(boolean clearnce){
+    
+   	if(clearnce){	
+		
+		position = (position + 1) % runways.size();
+		
+                runways.get(position).dequeueFromRunway();
+
+	}else{
+		
+		//this is temporary since i belive you had an idea to make this more effeciant
+		clearance.add(clearance.size(),runways.get(position).dequeueFromRunway());
+	
+                position = (position + 1) % runways.size();	
+	
+	} 
     
     }
 
