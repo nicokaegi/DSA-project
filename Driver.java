@@ -17,7 +17,6 @@ public class Driver
 
     public static void main(String args[]) throws IOException
     {
-        //line here to declare data structure
         Boolean quit = false;
         AirTrafficControl atc = new AirTrafficControl();
 
@@ -52,7 +51,7 @@ public class Driver
 		}	
 		else{
 		
-			System.out.println("error not uniqe name please try again");
+			System.out.println("error not unique name please try again");
 			intHolder++;
 		}
 	
@@ -110,12 +109,14 @@ public class Driver
 
                 break;
             case 3:
-
+        	reEnterPlane(atc);
         	     //atc.reEnterPlane(atc);
                 break;
             case 4:
+        	openRunway(atc);
                 break;
             case 5:
+        	closeRunway(atc);
                 break;
             case 6:
                 break;
@@ -142,8 +143,15 @@ public class Driver
 	System.out.println(flight);
 
 	atc.reEnterRunway(flight);
-
-
-
-    }
+    }//end reEnterPlane
+    
+    private static void openRunway(AirTrafficControl atc) throws IOException
+    {
+	
+    }//end openRunway
+    
+    private static void closeRunway(AirTrafficControl atc) throws IOException
+    {
+	
+    }//end closeRunway
 }

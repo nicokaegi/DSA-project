@@ -148,7 +148,7 @@ public class AirTrafficControl
 
 	if(tempPlane != null)
 	    {
-		Runway tempRunway = matchRunway(tempPlane.getRunway());
+		Runway tempRunway = findRunway(tempPlane.getRunway());
 
 		tempRunway.enqueueToRunway(tempPlane);
 
@@ -166,14 +166,16 @@ public class AirTrafficControl
     //Basically I got another idea and am gonna run with it.
 	    return null;
 	}
-
+/*
+ Not using htis because find runway is the same thing.
+ 
     private Runway matchRunway(String runway)
     {
 	Runway retrievedRunway = null;
 
 	return retrievedRunway;
     }
-
+*/
 
 
 
