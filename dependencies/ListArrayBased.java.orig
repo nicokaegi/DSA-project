@@ -103,13 +103,13 @@ public class ListArrayBased<T> implements ListInterface<T>
 
     public String toString()
     {
-        StringBuilder buildItems = new StringBuilder();
+	StringBuilder buildItems = new StringBuilder();
+	
+	for(int i = 0; i<numItems; i++)
+	    {
+		buildItems.append(items[i] + " ");
+	    }
 
-        for(int i = 0; i<numItems; i++)
-        {
-            buildItems.append(items[i] + " ");
-        }
-
-        return buildItems.toString();
+	return buildItems.toString();
     }
 }

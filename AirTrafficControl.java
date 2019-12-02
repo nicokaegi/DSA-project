@@ -16,185 +16,185 @@ public class AirTrafficControl
      * @return the runways
      */
     public ListArrayBasedPlus<Runway> getRunways()
-        {
-    	return runways;
-        }
+    {
+        return runways;
+    }
 
     /**
      * @param runwayName
      * @return
      */
-    public Runway findRunway(String runwayName){
-    
-	if(runways.size() == 0)
-	    {
-		return null;
-	    }
-	for(int pos = 0; pos < runways.size(); pos++){
+    public Runway findRunway(String runwayName) {
 
-	    if(runways.get(pos)!=null)
-		{
-		if(runways.get(pos).getName().equals(runwayName)){
-		
-			return runways.get(pos);
-		}
-		}
-	}
+        if(runways.size() == 0)
+        {
+            return null;
+        }
+        for(int pos = 0; pos < runways.size(); pos++) {
 
-	return null;	
+            if(runways.get(pos)!=null)
+            {
+                if(runways.get(pos).getName().equals(runwayName)) {
+
+                    return runways.get(pos);
+                }
+            }
+        }
+
+        return null;
 
     }
-    
-    public boolean enterAirPlane(Plane newPlane){
 
-      //it's boolean because im to lazy to add trycatch blocks
-      //create a new excpetion; plus this provideds a easy way to exit the method;
+    public boolean enterAirPlane(Plane newPlane) {
 
-		Runway temp = findRunway(newPlane.getRunway());
+        //it's boolean because im to lazy to add trycatch blocks
+        //create a new excpetion; plus this provideds a easy way to exit the method;
 
-		if(temp != null){
-		
-			temp.enqueueToRunway(newPlane);
+        Runway temp = findRunway(newPlane.getRunway());
 
-			return true;	
-		
-		}
-		else{
-		
-			return false;
-		
-		}	
-      
+        if(temp != null) {
+
+            temp.enqueueToRunway(newPlane);
+
+            return true;
+
+        }
+        else {
+
+            return false;
+
+        }
+
 
     }
     /**
      * @return the clearance
      */
 
-    public boolean addRunWay(String name){
-    
-    		if(findRunway(name) == null){
-		
+    public boolean addRunWay(String name) {
 
-			runways.add(totalRunways, new Runway(name));
-			totalRunways++;
-		
-			return true;		
-		
-		}
-		else{
-		
-		 	return false;
-		
-		}
-    
+        if(findRunway(name) == null) {
+
+
+            runways.add(totalRunways, new Runway(name));
+            totalRunways++;
+
+            return true;
+
+        }
+        else {
+
+            return false;
+
+        }
+
     }
 
-    public Plane currentTakeOfPlane(){
+    public Plane currentTakeOfPlane() {
 
-	    return runways.get(position).peekRunway();
+        return runways.get(position).peekRunway();
     }
 
-    public void takeOff(boolean clearnce){
-    
-   	if(clearnce){	
-		
-		position = (position + 1) % runways.size();
-		
-                runways.get(position).dequeueFromRunway();
+    public void takeOff(boolean clearnce) {
 
-	}else{
-		
-		//this is temporary since i belive you had an idea to make this more effeciant
-	    //I HOPEFULLY have the ascendingly ordered list genericed, so adding to it we just add and it'll sort in fine.
-		clearance.add(runways.get(position).dequeueFromRunway());
-	
-                position = (position + 1) % runways.size();	
-	
-	} 
-    
+        if(clearnce) {
+
+            position = (position + 1) % runways.size();
+
+            runways.get(position).dequeueFromRunway();
+
+        } else {
+
+            //this is temporary since i belive you had an idea to make this more effeciant
+            //I HOPEFULLY have the ascendingly ordered list genericed, so adding to it we just add and it'll sort in fine.
+            clearance.add(runways.get(position).dequeueFromRunway());
+
+            position = (position + 1) % runways.size();
+
+        }
+
     }
 
     public AscendinglyOrderedList<Plane<?>, String> getClearance()
-        {
-    	return clearance;
-        }
+    {
+        return clearance;
+    }
     /**
      * @return the count
      */
     public int getCount()
-        {
-    	return count;
-        }
+    {
+        return count;
+    }
     /**
      * @return the position
      */
     public int getPositioni()
-        {
-    	return position;
-        }
+    {
+        return position;
+    }
     /**
      * @param runways the runways to set
      */
     public void setRunways(ListArrayBasedPlus<Runway> runways)
-        {
-    	this.runways = runways;
-        }
+    {
+        this.runways = runways;
+    }
     /**
      * @param clearance the clearance to set
      */
     public void setClearance(AscendinglyOrderedList<Plane<?>, String> clearance)
-        {
-    	this.clearance = clearance;
-        }
+    {
+        this.clearance = clearance;
+    }
     /**
      * @param count the count to set
      */
     public void setCount(int count)
-        {
-    	this.count = count;
-        }
+    {
+        this.count = count;
+    }
     /**
      * @param position the position to set
      */
     public void setPosition(int position)
-        {
-    	this.position = position;
-        }
+    {
+        this.position = position;
+    }
 
     public void reEnterRunway(String flight)
     {
-		Plane tempPlane = verifyRunway(flight);
+        Plane tempPlane = verifyRunway(flight);
 
-		if (tempPlane != null)
-		    {
-			Runway tempRunway = findRunway(tempPlane.getRunway());
+        if (tempPlane != null)
+        {
+            Runway tempRunway = findRunway(tempPlane.getRunway());
 
-			tempRunway.enqueueToRunway(tempPlane);
+            tempRunway.enqueueToRunway(tempPlane);
 
-			// clearance.remove();
-		    } else
-		    {
-			System.out.println("Flight " + flight + " is not waiting for clearance.");
-		    }
+            // clearance.remove();
+        } else
+        {
+            System.out.println("Flight " + flight + " is not waiting for clearance.");
+        }
     }
 
     private Plane verifyRunway(String flight)
-	{
-    //I'm still working on this function, however I want this to be able to at least not spit out errors.
-    //Basically I got another idea and am gonna run with it.
-	    return null;
-	}
-/*
- Not using htis because find runway is the same thing.
- 
-    private Runway matchRunway(String runway)
     {
-	Runway retrievedRunway = null;
-
-	return retrievedRunway;
+        //I'm still working on this function, however I want this to be able to at least not spit out errors.
+        //Basically I got another idea and am gonna run with it.
+        return null;
     }
-*/
+    /*
+     Not using htis because find runway is the same thing.
+
+        private Runway matchRunway(String runway)
+        {
+    	Runway retrievedRunway = null;
+
+    	return retrievedRunway;
+        }
+    */
 
 
 

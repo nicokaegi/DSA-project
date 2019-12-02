@@ -13,8 +13,8 @@ import dependencies.ListIndexOutOfBoundsException;
  * @author: Theresa Morris - Section 2
  * @version: 2019.11.04
  */
-public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparable
-    <? super KT>> implements AscendinglyOrderedListInterface<T, KT> {
+public class AscendinglyOrderedList<T extends KeyedItem<KT> , KT extends Comparable
+<? super KT>> implements AscendinglyOrderedListInterface<T, KT> {
     private static final int MAX_LIST = 3;
     protected T []items;  // an array of list items
     protected int numItems;  // number of items in list
