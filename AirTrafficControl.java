@@ -1,12 +1,17 @@
 import dependencies.AscendinglyOrderedList;
 import dependencies.ListArrayBasedPlus;
 
+/**
+ * @author Melody
+ *
+ */
 public class AirTrafficControl
 {
     private ListArrayBasedPlus<Runway> runways;
     private AscendinglyOrderedList<Plane<?>, String> clearance;
     private int count = 0;
-    private int position = 0;// assuming position refered to runways
+    private int position = 0;// This is our position in the runway list.
+    private int totalRunways = 0;//need this to keep adding runways to the end of the list.
     /**
      * @return the runways
      */
@@ -15,15 +20,25 @@ public class AirTrafficControl
     	return runways;
         }
 
+    /**
+     * @param runwayName
+     * @return
+     */
     public Runway findRunway(String runwayName){
     
+	if(runways.size() == 0)
+	    {
+		return null;
+	    }
 	for(int pos = 0; pos < runways.size(); pos++){
-	
+
+	    if(runways.get(pos)!=null)
+		{
 		if(runways.get(pos).getName().equals(runwayName)){
 		
 			return runways.get(pos);
 		}
-	
+		}
 	}
 
 	return null;	
@@ -61,7 +76,8 @@ public class AirTrafficControl
     		if(findRunway(name) == null){
 		
 
-			runways.add(runways.size(), new Runway(name));
+			runways.add(totalRunways, new Runway(name));
+			totalRunways++;
 		
 			return true;		
 		
@@ -146,8 +162,8 @@ public class AirTrafficControl
     	this.position = position;
         }
 
-	public void reEnterRunway(String flight)
-	    {
+    public void reEnterRunway(String flight)
+    {
 		Plane tempPlane = verifyRunway(flight);
 
 		if (tempPlane != null)

@@ -18,6 +18,10 @@ public class Driver
     {
 	static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
+	/**
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String args[]) throws IOException
 	    {
 		Boolean quit = false;
