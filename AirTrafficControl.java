@@ -17,6 +17,10 @@ import dependencies.MyBinarySearchTreePlus;
  *
  * @version: 2019.12.02 AirTrafficControl.java
  */
+/**
+ * @author morris85
+ *
+ */
 public class AirTrafficControl
 {
     private ListArrayBasedPlus<Runway> runways = new ListArrayBasedPlus<Runway>();
@@ -69,15 +73,11 @@ public class AirTrafficControl
             temp.enqueueToRunway(newPlane);
 
             return true;
-
         }
         else {
 
             return false;
-
         }
-
-
     }
     /**
      * @return the clearance
@@ -192,6 +192,11 @@ public class AirTrafficControl
         }
     }
     
+    /**
+     * @param oldRunway
+     * @param stdin
+     * @throws IOException
+     */
     public void runwayLoop(String oldRunway, BufferedReader stdin) throws IOException
     {
     	Runway tempRunway = findRunway(oldRunway);
@@ -226,9 +231,12 @@ public class AirTrafficControl
     {
     	ListArrayBasedPlus tempClosure = new ListArrayBasedPlus();
     	
-    	while(clearance.retrieve(oldRunway) != null)
+    	Plane tempPlane = clearance.retrieve(oldRunway);
+    	
+    	while(tempPlane != null)
     	{
-    		
+    		tempClosure.add(0, tempPlane);
+    		tempPlane = clearance.retrieve(oldRunway);
     	}
     }
 

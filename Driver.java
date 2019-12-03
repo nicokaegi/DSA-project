@@ -56,16 +56,13 @@ public class Driver
 
             if (atc.addRunWay(stringHolder))
             {
-
                 System.out.println("success");
 
             } else
             {
-
                 System.out.println("error not unique name please try again");
                 intHolder++;
             }
-
         }
 
         // Initial menu list
@@ -193,5 +190,6 @@ public class Driver
     	atc.runwayLoop(oldRunway, stdin);
        	atc.closureLoop(oldRunway, stdin);
 
+       	System.out.println("Runway " + oldRunway + " has been closed.");
     }// end closeRunway
 }
