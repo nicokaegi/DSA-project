@@ -1,3 +1,5 @@
+import java.io.*;
+
 import dependencies.AscendinglyOrderedList;
 import dependencies.ListArrayBasedPlus;
 import dependencies.MyBinarySearchTreePlus;
@@ -174,13 +176,14 @@ public class AirTrafficControl
 
     public void reEnterRunway(String flight)
     {
-        Plane tempPlane = getFromClearance(flight);
+        Plane tempPlane = clearance.retrieve(flight);
 
         if (tempPlane != null)
         {
             Runway tempRunway = findRunway(tempPlane.getRunway());
 
             tempRunway.enqueueToRunway(tempPlane);
+            System.out.println("Flight " + flight + " is now waiting for takeoff on runway " + tempPlane.getRunway());
 
             // clearance.remove();
         } else
@@ -188,29 +191,47 @@ public class AirTrafficControl
             System.out.println("Flight " + flight + " is not waiting for clearance.");
         }
     }
-
-    private Plane getFromClearance(String flight)
+    
+    public void runwayLoop(String oldRunway, BufferedReader stdin) throws IOException
     {
-    	//clearance.search(flight);
+    	Runway tempRunway = findRunway(oldRunway);
     	
-    	return null;
+    	while(!tempRunway.isEmpty())
+    	{
+    		Plane tempPlane = tempRunway.dequeueFromRunway();
+    		
+    		System.out.println("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
+    		String newRunway = stdin.readLine();
+    		
+    		if(newRunway.equals(oldRunway))
+    		{
+    			System.out.println("This is the runway that is closing!");
+    		}
+    		else if(findRunway(newRunway) != null)
+    		{
+    			tempPlane.setRunway(newRunway);
+    			
+    			System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on Runway " + tempPlane.getRunway()); 
+    		}
+    		else
+    		{
+    			System.out.println("No such runway!");
+    		}
+    		
+    	}
+    	
     }
     
-    public void runwayClosure(String oldRunway, String newRunway)
+    public void closureLoop(String oldRunway, BufferedReader stdin)
     {
+    	ListArrayBasedPlus tempClosure = new ListArrayBasedPlus();
     	
-    	
+    	while(clearance.retrieve(oldRunway) != null)
+    	{
+    		
+    	}
     }
-    /*
-     Not using htis because find runway is the same thing.
 
-        private Runway matchRunway(String runway)
-        {
-    	Runway retrievedRunway = null;
-
-    	return retrievedRunway;
-        }
-    */
     
     public void printCount()
     {

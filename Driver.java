@@ -14,6 +14,8 @@
 
 import java.io.*;
 
+import dependencies.ListArrayBasedPlus;
+
 public class Driver
 {
     static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
@@ -188,12 +190,8 @@ public class Driver
     	String oldRunway = stdin.readLine();
     	System.out.println(oldRunway);
     	
-    	System.out.print("Enter runway: ");
-    	String newRunway = stdin.readLine();
-    	System.out.println(newRunway);
-    	
-    	atc.runwayClosure(oldRunway, newRunway);
-    	
+    	atc.runwayLoop(oldRunway, stdin);
+       	atc.closureLoop(oldRunway, stdin);
 
     }// end closeRunway
 }

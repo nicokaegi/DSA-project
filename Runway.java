@@ -70,5 +70,10 @@ public class Runway
     {
         return planes.dequeue();
     }
+    
+    public boolean isEmpty()
+    {
+    	return planes.isEmpty();
+    }
 
 }
