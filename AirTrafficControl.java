@@ -61,7 +61,7 @@ public class AirTrafficControl
 
     }
 
-    public boolean enterAirPlane(Plane newPlane) {
+    public boolean enterAirPlane(Plane<?> newPlane) {
 
         //it's boolean because im to lazy to add trycatch blocks
         //create a new excpetion; plus this provideds a easy way to exit the method;
@@ -102,7 +102,7 @@ public class AirTrafficControl
 
     }
 
-    public Plane currentTakeOfPlane() {
+    public Plane<?> currentTakeOfPlane() {
 
         return runways.get(position).peekRunway();
     }
@@ -176,7 +176,7 @@ public class AirTrafficControl
 
     public void reEnterRunway(String flight)
     {
-        Plane tempPlane = clearance.retrieve(flight);
+        Plane<?> tempPlane = clearance.retrieve(flight);
 
         if (tempPlane != null)
         {
@@ -203,7 +203,7 @@ public class AirTrafficControl
     	
     	while(!tempRunway.isEmpty())
     	{
-    		Plane tempPlane = tempRunway.dequeueFromRunway();
+    		Plane<?> tempPlane = tempRunway.dequeueFromRunway();
     		
     		System.out.println("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
     		String newRunway = stdin.readLine();
@@ -227,16 +227,41 @@ public class AirTrafficControl
     	
     }
     
-    public void closureLoop(String oldRunway, BufferedReader stdin)
+    public void clearanceLoop(String oldRunway, BufferedReader stdin) throws IOException
     {
-    	ListArrayBasedPlus tempClosure = new ListArrayBasedPlus();
+    	ListArrayBasedPlus<Plane<?>> tempClosure = new ListArrayBasedPlus<Plane<?>>();
     	
-    	Plane tempPlane = clearance.retrieve(oldRunway);
-    	
-    	while(tempPlane != null)
+    	ListArrayBasedPlus<Plane<?>> flatTree = clearance.flattenTree();
+    	 
+    	for(int i = 0; i < flatTree.size(); i++)
     	{
-    		tempClosure.add(0, tempPlane);
-    		tempPlane = clearance.retrieve(oldRunway);
+    		if(flatTree.get(i).getRunway().equals(oldRunway))
+    		{
+    			tempClosure.add(0,  flatTree.get(i));
+    		}
+    	}
+    	
+    	for(int i = 0; i<tempClosure.size(); i++)
+    	{
+    		Plane tempPlane = tempClosure.get(i);
+    		
+    		System.out.println("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
+    		String newRunway = stdin.readLine();
+    		
+    		if(newRunway.equals(oldRunway))
+    		{
+    			System.out.println("This is the runway that is closing!");
+    		}
+    		else if(findRunway(newRunway) != null)
+    		{
+    			tempPlane.setRunway(newRunway);
+    			
+    			System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on Runway " + tempPlane.getRunway()); 
+    		}
+    		else
+    		{
+    			System.out.println("No such runway!");
+    		}
     	}
     }
 

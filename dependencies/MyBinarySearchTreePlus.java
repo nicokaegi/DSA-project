@@ -206,4 +206,29 @@ public class MyBinarySearchTreePlus <T extends KeyedItem<KT>, KT extends Compara
 	    }
     
     }
+    
+    public ListArrayBasedPlus flattenTree()
+    {
+    	ListArrayBasedPlus flattened = new ListArrayBasedPlus();
+    			
+    	flattened = flattening(root, flattened);
+    	
+    	return flattened;
+    }
+    
+    public ListArrayBasedPlus flattening (TreeNode<T> tnode, ListArrayBasedPlus adding)
+    {
+    	if(tnode == null)
+    	{
+    		return null;
+    	}
+    	
+    	adding.add(0, tnode.getItem());
+    	
+    	flattening(tnode.getLeftChild(), adding);
+    	flattening(tnode.getRightChild(), adding);
+    	
+    	return adding;
+    	
+    }
 }
