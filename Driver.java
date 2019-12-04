@@ -191,6 +191,8 @@ public class Driver
 
     private static void reEnterPlane(AirTrafficControl atc) throws IOException
     {
+	if(!atc.getClearance().isEmpty())
+	    {
         System.out.print("Enter flight number : ");
         String flight = stdin.readLine();
         System.out.println(flight);
@@ -202,6 +204,11 @@ public class Driver
         {
             System.out.println("Unable to re-queue plane to runway!");
         }
+	    }
+	else
+	    {
+		System.out.println("There are no planes waiting for clearance!");
+	    }
     }// end reEnterPlane
     /**
      * Calls the ATC to add a new runway
