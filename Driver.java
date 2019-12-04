@@ -17,8 +17,8 @@ import java.io.*;
 import dependencies.ListArrayBasedPlus;
 
 /**
- * @author elaine
- *
+ * @author thersa moris
+ * @author nico kaegi
  */
 public class Driver
 {
@@ -89,7 +89,7 @@ public class Driver
 
             switch (menu)
             {
-            case 0:
+            case  0:
                 quit = true;
                 break;
             case 1:
@@ -103,24 +103,34 @@ public class Driver
                 break;
             case 2:
 
+
                 planeHolder = atc.currentTakeOfPlane();
 
-                System.out.println(
-                    "is " + planeHolder.getFlightNumber() + "  cleared for take off Y/N");
+		if(planeHolder != null){
 
-                stringHolder = stdin.readLine();
+                	System.out.println(
+                    		"is " + planeHolder.getFlightNumber() + "  cleared for take off Y/N");
 
-                if (stringHolder.equals('y') || stringHolder.equals('Y'))
-                {
+                	stringHolder = stdin.readLine();
 
-                    atc.takeOff(true);
+                	if (stringHolder.equals('y') || stringHolder.equals('Y'))
+                	{
 
-                } else
-                {
+                    	atc.takeOff(true);
 
-                    atc.takeOff(false);
+                	} else
+                	{
 
+                    	atc.takeOff(false);
+			
+			}
                 }
+		else{
+			
+			//incase there are no planes at a runways (the minus on is intentional since postion get updated even when currentTakeOfPlane() returns null)
+			System.out.println("no planes at runway" + ( atc.getPosition() - 1 ) );
+	
+		}
 
                 break;
             case 3:

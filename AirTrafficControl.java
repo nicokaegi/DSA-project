@@ -108,7 +108,20 @@ public class AirTrafficControl
 
     public Plane<?> currentTakeOfPlane() {
 
-        return runways.get(position).peekRunway();
+	
+	if(runways.get(position) != null){    
+    	
+		return runways.get(position).peekRunway();
+
+	}
+	else{
+
+               position = (position + 1) % runways.size();
+
+               return null;
+
+
+	}
     }
 
     public void takeOff(boolean clearnce) {
@@ -145,7 +158,7 @@ public class AirTrafficControl
     /**
      * @return the position
      */
-    public int getPositioni()
+    public int getPosition()
     {
         return position;
     }
