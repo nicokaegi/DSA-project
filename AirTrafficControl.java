@@ -136,7 +136,7 @@ public class AirTrafficControl
         }
         catch( Exception E ){
 
-            position = (position + 1) % runways.size();
+            //position = (position + 1) % (runways.size());
 
             return null;
 
@@ -151,11 +151,13 @@ public class AirTrafficControl
      */
     public void takeOff(boolean clearnce) {
 
+	//System.out.println(runways.get(0).getName());
+	
         if(clearnce) {
 
             runways.get(position).dequeueFromRunway();
 
-            position = (position + 1) % runways.size();
+            position = (position + 1) % (runways.size());
 
             count++;
 
@@ -163,7 +165,7 @@ public class AirTrafficControl
 
             clearance.insert(runways.get(position).dequeueFromRunway());
 
-            position = (position + 1) % runways.size();
+            position = (position + 1) % (runways.size());
 
         }
 
@@ -241,14 +243,13 @@ public class AirTrafficControl
     public void reEnterRunway(String flight)
     {
         Plane<?> tempPlane = clearance.retrieve(flight);
+	clearance.delete(flight);
 
         if (tempPlane != null)
         {
             Runway tempRunway = findRunway(tempPlane.getRunway());
-
             tempRunway.enqueueToRunway(tempPlane);
             System.out.println("Flight " + flight + " is now waiting for takeoff on runway " + tempPlane.getRunway());
-            clearance.delete(flight);
         } else
         {
             System.out.println("Flight " + flight + " is not waiting for clearance.");
