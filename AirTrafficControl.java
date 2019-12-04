@@ -1,9 +1,3 @@
-import java.io.*;
-
-import dependencies.AscendinglyOrderedList;
-import dependencies.ListArrayBasedPlus;
-import dependencies.MyBinarySearchTreePlus;
-
 /**
  * Purpose: Data Structure and Algorithms Project
  * Status: Barely started
@@ -17,6 +11,11 @@ import dependencies.MyBinarySearchTreePlus;
  *
  * @version: 2019.12.02 AirTrafficControl.java
  */
+import java.io.*;
+
+import dependencies.AscendinglyOrderedList;
+import dependencies.ListArrayBasedPlus;
+import dependencies.MyBinarySearchTreePlus;
 
 public class AirTrafficControl
 {
