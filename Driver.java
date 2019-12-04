@@ -1,7 +1,7 @@
 /**
  * Purpose: Data Structure and Algorithms Project
  * Status: Barely started
- * Last update: 11/21/19
+ * Last update: 12/03/19
  * Submitted: 12/05/19
  * Comment: test suite and sample run attached
  *
@@ -9,7 +9,7 @@
  *
  * @author: Nico Kaegi - Section 2
  *
- * @version: 2019.11.21 AirTrafficControl.java
+ * @version: 2019.12.03 AirTrafficControl.java
  */
 
 import java.io.*;
