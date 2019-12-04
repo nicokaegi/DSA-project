@@ -15,7 +15,7 @@ import dependencies.KeyedItem;
 
 public class Plane<KT> extends KeyedItem<String>
 {
-	/** A string to hold our flight number (this is our comparable field) **/
+    /** A string to hold our flight number (this is our comparable field) **/
     private String flightNumber;
     /** A string to hold our destination **/
     private String destination;
@@ -41,7 +41,7 @@ public class Plane<KT> extends KeyedItem<String>
 
     /**
      * a method to return the destination
-     * 
+     *
      * @return the destination
      */
     public String getDestination()

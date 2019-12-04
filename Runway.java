@@ -9,13 +9,13 @@
  *
  * @author: Nico Kaegi - Section 2
  *
- * @version: 2019.12.04 
+ * @version: 2019.12.04
  */
 import dependencies.QueueSLS;
 
 public class Runway
 {
-	/**A string holding the runway name **/
+    /**A string holding the runway name **/
     String name;
     /**A queue holding all of the planes waiting for takeoff from this runway **/
     QueueSLS<Plane> planes;
@@ -63,14 +63,14 @@ public class Runway
      */
     public String toString()
     {
-    	if(!planes.isEmpty())
-    	{
-    		return planes.toString();
-    	}
-    	else
-    	{
-    		return " ";
-    	}
+        if(!planes.isEmpty())
+        {
+            return planes.toString();
+        }
+        else
+        {
+            return " ";
+        }
     }
 
     /**
@@ -99,14 +99,14 @@ public class Runway
     {
         return planes.dequeue();
     }
-    
+
     /**
      * A method to tell us if the runway is empty
      * @return true if the runway is empty, false otherwise.
      */
     public boolean isEmpty()
     {
-    	return planes.isEmpty();
+        return planes.isEmpty();
     }
 
 }

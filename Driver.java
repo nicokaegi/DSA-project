@@ -24,7 +24,7 @@ public class Driver
 
     public static void main(String args[]) throws IOException
     {
-	/** boolean for use of the menu - determines if we are done, or not **/
+        /** boolean for use of the menu - determines if we are done, or not **/
         Boolean quit = false;
         /** AirTrafficControl holds most of our control methods **/
         AirTrafficControl atc = new AirTrafficControl();
@@ -43,10 +43,10 @@ public class Driver
         /** Temporary plane used for creating new planes **/
         Plane planeHolder;
 
-        
+
         //Initial runway setup
         System.out.println("how many runways ?");
-        
+
         intHolder = Integer.parseInt(stdin.readLine());
 
 
@@ -92,7 +92,7 @@ public class Driver
                 quit = true;
                 break;
             case 1:
-        	//Case 1:  Enter new plane into system
+                //Case 1:  Enter new plane into system
                 System.out.println(
                     "1 : plane entering system please enter flight number, destination, and take off run way");
 
@@ -102,34 +102,34 @@ public class Driver
                 break;
             case 2:
 
-        	//Case 2: Plane takes off in a round robin style
+                //Case 2: Plane takes off in a round robin style
                 planeHolder = atc.currentTakeOfPlane();
 
-		if(planeHolder != null){
+                if(planeHolder != null) {
 
-                	System.out.println(
-                    		"is " + planeHolder.getFlightNumber() + "  cleared for take off Y/N");
+                    System.out.println(
+                        "is " + planeHolder.getFlightNumber() + "  cleared for take off Y/N");
 
-                	stringHolder = stdin.readLine();
+                    stringHolder = stdin.readLine();
 
-                	if (stringHolder.equals('y') || stringHolder.equals('Y'))
-                	{
+                    if (stringHolder.equals('y') || stringHolder.equals('Y'))
+                    {
 
-                    	atc.takeOff(true);
+                        atc.takeOff(true);
 
-                	} else
-                	{
+                    } else
+                    {
 
-                    	atc.takeOff(false);
-			
-			}
+                        atc.takeOff(false);
+
+                    }
                 }
-		else{
-			
-			//incase there are no planes at a runways (the minus on is intentional since postion get updated even when currentTakeOfPlane() returns null)
-			System.out.println("no planes at runway" + ( atc.getPosition() - 1 ) );
-	
-		}
+                else {
+
+                    //incase there are no planes at a runways (the minus on is intentional since postion get updated even when currentTakeOfPlane() returns null)
+                    System.out.println("no planes at runway" + ( atc.getPosition() - 1 ) );
+
+                }
 
                 break;
             case 3:
@@ -142,13 +142,13 @@ public class Driver
                 closeRunway(atc);
                 break;
             case 6:
-            	atc.printRunways();
+                atc.printRunways();
                 break;
             case 7:
-            	atc.printClearance();
+                atc.printClearance();
                 break;
             case 8:
-            	atc.printCount();
+                atc.printCount();
                 break;
             default:
                 System.out.println("\n\tInvalid input - Make your menu selection now : ");
@@ -161,13 +161,13 @@ public class Driver
         }// end while
 
     }// End main
-	/**
-	 * Calls the ATC to search through the clearance list, find the relevant plane, and put it back on its runway if it is now clear for takeoff
-	 * 
-	 * @param atc
-	 *            the AirTrafficControl object
-	 */
-    
+    /**
+     * Calls the ATC to search through the clearance list, find the relevant plane, and put it back on its runway if it is now clear for takeoff
+     *
+     * @param atc
+     *            the AirTrafficControl object
+     */
+
     private static void reEnterPlane(AirTrafficControl atc) throws IOException
     {
         System.out.print("Enter flight number : ");
@@ -182,44 +182,44 @@ public class Driver
             System.out.println("Unable to re-queue plane to runway!");
         }
     }// end reEnterPlane
-	/**
-	 * Calls the ATC to add a new runway
-	 * 
-	 * @param atc
-	 *            the AirTrafficControl object
-	 */
+    /**
+     * Calls the ATC to add a new runway
+     *
+     * @param atc
+     *            the AirTrafficControl object
+     */
     private static void openRunway(AirTrafficControl atc) throws IOException
     {
-    	System.out.print("Enter the name of the new runway : ");
-    	String newRunway = stdin.readLine();
-    	System.out.print(newRunway);
-    	
-    	if(atc.addRunWay(newRunway))
-    	{
-    		System.out.println("Runway " + newRunway + " has opened.");
-    	}
-    	else
-    	{
-    		System.out.println("Runway " + newRunway + " already existsm please choose another name.");
-    	}
+        System.out.print("Enter the name of the new runway : ");
+        String newRunway = stdin.readLine();
+        System.out.print(newRunway);
+
+        if(atc.addRunWay(newRunway))
+        {
+            System.out.println("Runway " + newRunway + " has opened.");
+        }
+        else
+        {
+            System.out.println("Runway " + newRunway + " already existsm please choose another name.");
+        }
 
     }// end openRunway
 
-	/**
-	 * Calls the ATC to first find the closing runway, and loop through it, putting all of its planes on new runways.  It then flattens the clearance list (temporarily), searches through it to find any planes from the closing runway, and reassign them to new runways, without re-enqueueing them.
-	 * 
-	 * @param atc
-	 *            the AirTrafficControl object
-	 */
+    /**
+     * Calls the ATC to first find the closing runway, and loop through it, putting all of its planes on new runways.  It then flattens the clearance list (temporarily), searches through it to find any planes from the closing runway, and reassign them to new runways, without re-enqueueing them.
+     *
+     * @param atc
+     *            the AirTrafficControl object
+     */
     private static void closeRunway(AirTrafficControl atc) throws IOException
     {
-    	System.out.print("Enter runway: ");
-    	String oldRunway = stdin.readLine();
-    	System.out.println(oldRunway);
-    	
-    	atc.runwayLoop(oldRunway, stdin);
-       	atc.clearanceLoop(oldRunway, stdin);
+        System.out.print("Enter runway: ");
+        String oldRunway = stdin.readLine();
+        System.out.println(oldRunway);
 
-       	System.out.println("Runway " + oldRunway + " has been closed.");
+        atc.runwayLoop(oldRunway, stdin);
+        atc.clearanceLoop(oldRunway, stdin);
+
+        System.out.println("Runway " + oldRunway + " has been closed.");
     }// end closeRunway
 }
