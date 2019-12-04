@@ -1,4 +1,4 @@
-/*
+/**
  * Purpose: Data Structure and Algorithms Project
  * Status: Barely started
  * Last update: 11/21/19
@@ -16,40 +16,39 @@ import java.io.*;
 
 import dependencies.ListArrayBasedPlus;
 
-/**
- * @author thersa moris
- * @author nico kaegi
- */
+
 public class Driver
 {
+    /** BufferedReader to intake our keyboard input **/
     static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
-    /**
-     * @param args
-     * @throws IOException
-     */
     public static void main(String args[]) throws IOException
     {
+	/** boolean for use of the menu - determines if we are done, or not **/
         Boolean quit = false;
+        /** AirTrafficControl holds most of our control methods **/
         AirTrafficControl atc = new AirTrafficControl();
-
+        /** String flightNumber used for creating new planes **/
         String flightNumber;
-
+        /** String destination used for creating new planes **/
         String destination;
-
+        /** String runway used for creating new planes **/
         String runway;
-
+        /** Boolean determining if a plane is successfully added **/
         boolean succeful;
-
+        /** integer holding our int from setting up initial runways **/
         int intHolder;
-
+        /** String holding our initial runway names **/
         String stringHolder;
+        /** Temporary plane used for creating new planes **/
+        Plane planeHolder;
 
+        
+        //Initial runway setup
         System.out.println("how many runways ?");
-
+        
         intHolder = Integer.parseInt(stdin.readLine());
 
-        Plane planeHolder;
 
         for (int pos = 1; pos <= intHolder; pos++)
         {
@@ -93,7 +92,7 @@ public class Driver
                 quit = true;
                 break;
             case 1:
-
+        	//Case 1:  Enter new plane into system
                 System.out.println(
                     "1 : plane entering system please enter flight number, destination, and take off run way");
 
@@ -103,7 +102,7 @@ public class Driver
                 break;
             case 2:
 
-
+        	//Case 2: Plane takes off in a round robin style
                 planeHolder = atc.currentTakeOfPlane();
 
 		if(planeHolder != null){
@@ -162,7 +161,13 @@ public class Driver
         }// end while
 
     }// End main
-
+	/**
+	 * Calls the ATC to search through the clearance list, find the relevant plane, and put it back on its runway if it is now clear for takeoff
+	 * 
+	 * @param atc
+	 *            the AirTrafficControl object
+	 */
+    
     private static void reEnterPlane(AirTrafficControl atc) throws IOException
     {
         System.out.print("Enter flight number : ");
@@ -177,7 +182,12 @@ public class Driver
             System.out.println("Unable to re-queue plane to runway!");
         }
     }// end reEnterPlane
-
+	/**
+	 * Calls the ATC to add a new runway
+	 * 
+	 * @param atc
+	 *            the AirTrafficControl object
+	 */
     private static void openRunway(AirTrafficControl atc) throws IOException
     {
     	System.out.print("Enter the name of the new runway : ");
@@ -195,6 +205,12 @@ public class Driver
 
     }// end openRunway
 
+	/**
+	 * Calls the ATC to first find the closing runway, and loop through it, putting all of its planes on new runways.  It then flattens the clearance list (temporarily), searches through it to find any planes from the closing runway, and reassign them to new runways, without re-enqueueing them.
+	 * 
+	 * @param atc
+	 *            the AirTrafficControl object
+	 */
     private static void closeRunway(AirTrafficControl atc) throws IOException
     {
     	System.out.print("Enter runway: ");
