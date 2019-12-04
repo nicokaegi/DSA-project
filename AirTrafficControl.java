@@ -129,6 +129,8 @@ public class AirTrafficControl
 
 
 	try{
+
+		System.out.println(runways.get(position).getName());
             return runways.get(position).peekRunway();
 
         }

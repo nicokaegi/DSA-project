@@ -130,6 +130,8 @@ public class Driver
                     System.out.println(
                         "is " + planeHolder.getFlightNumber() + "  cleared for take off Y/N");
 
+			System.out.println();//remove this later.
+
                         stringHolder = stdin.readLine();
                         System.out.println(stringHolder);
 
