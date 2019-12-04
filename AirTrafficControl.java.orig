@@ -241,8 +241,6 @@ public class AirTrafficControl
             tempRunway.enqueueToRunway(tempPlane);
             System.out.println("Flight " + flight + " is now waiting for takeoff on runway " + tempPlane.getRunway());
             clearance.delete(flight);
-
-            // clearance.remove();
         } else
         {
             System.out.println("Flight " + flight + " is not waiting for clearance.");
@@ -369,22 +367,22 @@ public class AirTrafficControl
 
     public void deleteRunway(String runway)
     {
-        if (findRunwayIndex(runway) != null)		
-    {
-	runways.remove(findRunwayIndex(runway));
+        if (findRunway(runway) != null)
+        {
+            runways.remove(findRunwayIndex(runway));
+        }
+
     }
 
-}
+    /**
+     * A method to find the index of a runway we want to remove
+     * @param runway the runway we want to delete
+     * @return the index of the runway we want to delete
+     */
 
-/**
- * A method to find the index of a runway we want to remove
- * @param runway the runway we want to delete
- * @return the index of the runway we want to delete
- */
-
-public int findRunwayIndex(String runway)
+    public Integer findRunwayIndex(String runway)
     {
-	for(int pos = 0; pos < runways.size(); pos++) {
+        for(int pos = 0; pos < runways.size(); pos++) {
 
             if(runways.get(pos)!=null)
             {
@@ -393,7 +391,9 @@ public int findRunwayIndex(String runway)
                     return pos;
                 }
             }
+	  
         }
+
 	return null;
     }
 

@@ -48,7 +48,7 @@ public class Driver
         System.out.print("how many runways ?");
 
         intHolder = Integer.parseInt(stdin.readLine());
-	System.out.println(intHolder);
+        System.out.println(intHolder);
 
         for (int pos = 1; pos <= intHolder; pos++)
         {
@@ -57,7 +57,7 @@ public class Driver
 
             stringHolder = stdin.readLine();
 
-	    System.out.println(stringHolder);
+            System.out.println(stringHolder);
 
             if (atc.addRunWay(stringHolder))
             {
@@ -97,70 +97,69 @@ public class Driver
                 //Case 1:  Enter new plane into system
                 System.out.print(
                     "1 : plane entering system please enter flight number, destination, and take off run way");
-		String newFlight = stdin.readLine();
-		System.out.println(newFlight);
-		String newDest = stdin.readLine();
-		System.out.println(newDest);
-		String newRunway = stdin.readLine();
-		System.out.println(newRunway);
+                String newFlight = stdin.readLine();
+                System.out.println(newFlight);
+                String newDest = stdin.readLine();
+                System.out.println(newDest);
+                String newRunway = stdin.readLine();
+                System.out.println(newRunway);
 
-                succeful = atc.enterAirPlane(new Plane(newFlight, newDest, newRunway);
+                succeful = atc.enterAirPlane(new Plane(newFlight, newDest, newRunway));
 
                 break;
             case 2:
-
                 //Case 2: Plane takes off in a round robin style
-                planeHolder = atc.currentTakeOfPlane();
+                 planeHolder = atc.currentTakeOfPlane();
 
-                if(planeHolder != null) {
+                    if(planeHolder != null) {
 
                     System.out.println(
                         "is " + planeHolder.getFlightNumber() + "  cleared for take off Y/N");
 
-                    stringHolder = stdin.readLine();
-		    System.out.println(stringHolder);
+                        stringHolder = stdin.readLine();
+                        System.out.println(stringHolder);
 
-                    if (stringHolder.equals('y') || stringHolder.equals('Y'))
-                    {
+                        if (stringHolder.equals('y') || stringHolder.equals('Y'))
+                        {
 
-                        atc.takeOff(true);
+                            atc.takeOff(true);
 
-                    } else
-                    {
+                        } else
+                        {
 
-                        atc.takeOff(false);
+                            atc.takeOff(false);
+
+                        }
+                    }
+                    else {
+
+                        //incase there are no planes at a runways (the minus on is intentional since postion get updated even when currentTakeOfPlane() returns null)
+                        System.out.println("no planes at runway" + ( atc.getPosition() - 1 ) );
 
                     }
-                }
-                else {
-
-                    //incase there are no planes at a runways (the minus on is intentional since postion get updated even when currentTakeOfPlane() returns null)
-                    System.out.println("no planes at runway" + ( atc.getPosition() - 1 ) );
-
-                }
 
                 break;
             case 3:
-                reEnterPlane(atc);
-                break;
-            case 4:
-                openRunway(atc);
-                break;
-            case 5:
-                closeRunway(atc);
-                break;
-            case 6:
-                atc.printRunways();
-                break;
-            case 7:
-                atc.printClearance();
-                break;
-            case 8:
-                atc.printCount();
-                break;
-            default:
-                System.out.println("\n\tInvalid input - Make your menu selection now : ");
-            }// end switch
+                    reEnterPlane(atc);
+                    break;
+                case 4:
+                        openRunway(atc);
+                        break;
+                    case 5:
+                            closeRunway(atc);
+                            break;
+                        case 6:
+                                atc.printRunways();
+                                break;
+                            case 7:
+                                    atc.printClearance();
+                                    break;
+                                case 8:
+                                        atc.printCount();
+                                        break;
+                                    default:
+                                            System.out.println("\n\tInvalid input - Make your menu selection now : ");
+                                        }// end switch
             if (quit)
             {
                 System.out.println("The Airport is closing : Bye Bye....");
@@ -226,9 +225,12 @@ public class Driver
         System.out.println(oldRunway);
 
         atc.runwayLoop(oldRunway, stdin);
-        atc.clearanceLoop(oldRunway, stdin);
+        if(atc.getClearance() != null)
+        {
+            atc.clearanceLoop(oldRunway, stdin);
+        }
 
-	
+
 
         System.out.println("Runway " + oldRunway + " has been closed.");
     }// end closeRunway
