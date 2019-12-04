@@ -45,17 +45,19 @@ public class Driver
 
 
         //Initial runway setup
-        System.out.println("how many runways ?");
+        System.out.print("how many runways ?");
 
         intHolder = Integer.parseInt(stdin.readLine());
-
+	System.out.println(intHolder);
 
         for (int pos = 1; pos <= intHolder; pos++)
         {
 
-            System.out.println(pos + " runway name ?");
+            System.out.print(pos + " runway name ?");
 
             stringHolder = stdin.readLine();
+
+	    System.out.println(stringHolder);
 
             if (atc.addRunWay(stringHolder))
             {
@@ -93,11 +95,16 @@ public class Driver
                 break;
             case 1:
                 //Case 1:  Enter new plane into system
-                System.out.println(
+                System.out.print(
                     "1 : plane entering system please enter flight number, destination, and take off run way");
+		String newFlight = stdin.readLine();
+		System.out.println(newFlight);
+		String newDest = stdin.readLine();
+		System.out.println(newDest);
+		String newRunway = stdin.readLine();
+		System.out.println(newRunway);
 
-                succeful = atc.enterAirPlane(
-                               new Plane(stdin.readLine(), stdin.readLine(), stdin.readLine()));
+                succeful = atc.enterAirPlane(new Plane(newFlight, newDest, newRunway);
 
                 break;
             case 2:
@@ -111,6 +118,7 @@ public class Driver
                         "is " + planeHolder.getFlightNumber() + "  cleared for take off Y/N");
 
                     stringHolder = stdin.readLine();
+		    System.out.println(stringHolder);
 
                     if (stringHolder.equals('y') || stringHolder.equals('Y'))
                     {

@@ -241,8 +241,6 @@ public class AirTrafficControl
             tempRunway.enqueueToRunway(tempPlane);
             System.out.println("Flight " + flight + " is now waiting for takeoff on runway " + tempPlane.getRunway());
             clearance.delete(flight);
-
-            // clearance.remove();
         } else
         {
             System.out.println("Flight " + flight + " is not waiting for clearance.");
