@@ -19,19 +19,30 @@ import dependencies.MyBinarySearchTreePlus;
 public class AirTrafficControl
 {
     /** List of current runways **/
+
     private ListArrayBasedPlus<Runway> runways = new ListArrayBasedPlus<Runway>();
+    
     /** Binary Search Tree that holds all planes waiting for clearance to launch **/
+    
     private MyBinarySearchTreePlus<Plane<?>, String> clearance = new MyBinarySearchTreePlus<Plane<?>, String>();
+    
     /**Integer counting how many planes have taken off **/
+    
     private int count = 0;
+    
     /** Integer keeping our position when planes take off from runways that they may be incremented in a round robin fashion**/
+    
     private int position = 0;
+    
     /** Int holding the total amount of runways we have, so we may always find the end index. **/
+    
     private int totalRunways = 0;
+    
     /**
      * Method to return our list of runways
      * @return the runways
      */
+    
     public ListArrayBasedPlus<Runway> getRunways()
     {
         return runways;
@@ -45,13 +56,9 @@ public class AirTrafficControl
      */
     public Runway findRunway(String runwayName) {
 
-        if(runways.size() == 0)
-        {
-            return null;
-        }
         for(int pos = 0; pos < runways.size(); pos++) {
 
-            if(runways.get(pos)!=null)
+            if(runways.get(pos)!= null)
             {
                 if(runways.get(pos).getName().equals(runwayName)) {
 
@@ -373,11 +380,6 @@ public class AirTrafficControl
 
     }
 
-    /**
-     * A method to find the index of a runway we want to remove
-     * @param runway the runway we want to delete
-     * @return the index of the runway we want to delete
-     */
 
     public Integer findRunwayIndex(String runway)
     {

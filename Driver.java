@@ -97,14 +97,28 @@ public class Driver
                 //Case 1:  Enter new plane into system
                 System.out.print(
                     "1 : plane entering system please enter flight number, destination, and take off run way");
-                String newFlight = stdin.readLine();
-                System.out.println(newFlight);
-                String newDest = stdin.readLine();
-                System.out.println(newDest);
-                String newRunway = stdin.readLine();
-                System.out.println(newRunway);
 
-                succeful = atc.enterAirPlane(new Plane(newFlight, newDest, newRunway));
+		String newFlight = stdin.readLine();
+
+		System.out.println(newFlight);
+
+		String newDest = stdin.readLine();
+
+		System.out.println(newDest);
+
+		String newRunway = stdin.readLine();
+
+		System.out.println(newRunway);
+
+		while( atc.findRunway(newRunway) == null){
+				
+        	        newRunway = stdin.readLine();
+
+	                System.out.println(newRunway);
+	
+		}
+
+                atc.enterAirPlane(new Plane(newFlight, newDest, newRunway));
 
                 break;
             case 2:
