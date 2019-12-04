@@ -125,7 +125,7 @@ public class AirTrafficControl
             return runways.get(position).peekRunway();
 
         }
-        catch( QueueException E ){
+        catch( Exception E ){
 
             position = (position + 1) % runways.size();
 
