@@ -151,9 +151,9 @@ public class AirTrafficControl
 
         if(clearnce) {
 
-            position = (position + 1) % runways.size();
-
             runways.get(position).dequeueFromRunway();
+
+            position = (position + 1) % runways.size();
 
             count++;
 
