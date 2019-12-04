@@ -157,8 +157,8 @@ public class MyBinarySearchTreePlus <T extends KeyedItem<KT>, KT extends Compara
             return null;
         }
         buildList.append(tnode.getItem().toString() + "\n ");
-        makeStringInOrder(tnode.getLeftChild(),buildList);
-        makeStringInOrder(tnode.getRightChild(),buildList);
+        makeStringPreorder(tnode.getLeftChild(),buildList);
+        makeStringPreorder(tnode.getRightChild(),buildList);
         return buildList.toString();
     }
 

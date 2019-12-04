@@ -224,15 +224,16 @@ public class Driver
         String newRunway = stdin.readLine();
         System.out.print(newRunway);
 
-        if(atc.addRunWay(newRunway))
+        while(!(atc.addRunWay(newRunway)))
         {
-            System.out.println("Runway " + newRunway + " has opened.");
-        }
-        else
-        {
-            System.out.println("Runway " + newRunway + " already existsm please choose another name.");
-        }
+            System.out.println("Runway " + newRunway + " already exists please choose another name. ");
 
+            System.out.print("Enter the name of the new runway : ");
+            newRunway = stdin.readLine();
+            System.out.print(newRunway);
+
+        }
+        System.out.println("Runway " + newRunway + " has opened.");
     }// end openRunway
 
     /**

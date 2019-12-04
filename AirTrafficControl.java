@@ -20,11 +20,11 @@ public class AirTrafficControl
 {
     /** List of current runways **/
 
-    private ListArrayBasedPlus<Runway> runways = new ListArrayBasedPlus<Runway>();
+    private ListArrayBasedPlus<Runway> runways;
     
     /** Binary Search Tree that holds all planes waiting for clearance to launch **/
     
-    private MyBinarySearchTreePlus<Plane<?>, String> clearance = new MyBinarySearchTreePlus<Plane<?>, String>();
+    private MyBinarySearchTreePlus<Plane<?>, String> clearance;
     
     /**Integer counting how many planes have taken off **/
     
@@ -37,6 +37,12 @@ public class AirTrafficControl
     /** Int holding the total amount of runways we have, so we may always find the end index. **/
     
     private int totalRunways = 0;
+
+    public AirTrafficControl()
+    {
+	runways = new ListArrayBasedPlus<Runway>();
+	clearance = new MyBinarySearchTreePlus<Plane<?>, String>();
+    }
     
     /**
      * Method to return our list of runways
@@ -126,22 +132,28 @@ public class AirTrafficControl
      * 		The plane that has taken off
      */
     public Plane<?> currentTakeOfPlane() {
+	
+        for(int n = 0; n < runways.size(); n++ ){
+	    
+	    if(runways.get(position).isEmpty()){
 
+		position = (position + 1) % runways.size();
+		
 
-	try{
+	    }
+	    else{
 
-		System.out.println(runways.get(position).getName());
-            return runways.get(position).peekRunway();
+		return runways.get(position).peekRunway();
 
-        }
-        catch( Exception E ){
+	    }
 
+	}
+
+	return null;
+        
             //position = (position + 1) % (runways.size());
 
-            return null;
-
-
-        }
+                
     }
 
     /**
@@ -353,8 +365,22 @@ public class AirTrafficControl
      */
     public void printClearance()
     {
+	if(!clearance.isEmpty())
+	    {
         System.out.println("These planes are waiting to be cleared to re-enter a runway:");
-        System.out.println(clearance.toStringInorder());
+	// System.out.println(clearance.toStringPreorder());
+	 ListArrayBasedPlus<Plane<?>> flatTree = clearance.flattenTree();
+
+	 for(int i = 0; i < flatTree.size(); i++)
+	     {
+		 System.out.println(flatTree.get(i).toString());
+	     }
+	    }
+	else
+	    {
+		System.out.println("No planes are waiting to be cleared to re-enter a runway!");
+	    }
+	
     }
 
     /**
