@@ -121,12 +121,11 @@ public class AirTrafficControl
     public Plane<?> currentTakeOfPlane() {
 
 
-        if(runways.get(position) != null) {
-
+	try{
             return runways.get(position).peekRunway();
 
         }
-        else {
+        catch( QueueException E ){
 
             position = (position + 1) % runways.size();
 
