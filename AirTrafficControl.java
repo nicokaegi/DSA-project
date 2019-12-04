@@ -13,7 +13,6 @@
  */
 import java.io.*;
 
-import dependencies.AscendinglyOrderedList;
 import dependencies.ListArrayBasedPlus;
 import dependencies.MyBinarySearchTreePlus;
 
@@ -349,11 +348,6 @@ public class AirTrafficControl
     {
         System.out.println("These planes are waiting to be cleared to re-enter a runway:");
         System.out.println(clearance.toStringInorder());
-        /*for(int i = 0; i < clearance.size(); i++)
-        {
-        	System.out.println(clearance.get(i).toString());
-        }
-        */
     }
 
     /**
@@ -368,6 +362,42 @@ public class AirTrafficControl
         }
     }
 
+    /**
+     * A method to delete a runway from the list
+     * @param runway the runway we are looking to delete
+     */
+
+    public void deleteRunway(String runway)
+    {
+        if (findRunway(runway) != null)
+        {
+            runways.remove(findRunwayIndex(runway));
+        }
+
+    }
+
+    /**
+     * A method to find the index of a runway we want to remove
+     * @param runway the runway we want to delete
+     * @return the index of the runway we want to delete
+     */
+
+    public Integer findRunwayIndex(String runway)
+    {
+        for(int pos = 0; pos < runways.size(); pos++) {
+
+            if(runways.get(pos)!=null)
+            {
+                if(runways.get(pos).getName().equals(runway)) {
+
+                    return pos;
+                }
+            }
+	  
+        }
+
+	return null;
+    }
 
 
 }

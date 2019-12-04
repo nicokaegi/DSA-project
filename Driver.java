@@ -220,6 +220,8 @@ public class Driver
         atc.runwayLoop(oldRunway, stdin);
         atc.clearanceLoop(oldRunway, stdin);
 
+	
+
         System.out.println("Runway " + oldRunway + " has been closed.");
     }// end closeRunway
 }
