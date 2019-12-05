@@ -1,7 +1,7 @@
 /**
  * Purpose: Data Structure and Algorithms Project
- * Status: Barely started
- * Last update: 12/03/19
+ * Status: Complete and Thoroughly Tested
+ * Last update: 12/04/19
  * Submitted: 12/05/19
  * Comment: test suite and sample run attached
  *
@@ -9,7 +9,7 @@
  *
  * @author: Nico Kaegi - Section 2
  *
- * @version: 2019.12.03 AirTrafficControl.java
+ * @version: 2019.12.04 
  */
 
 import java.io.*;
@@ -198,10 +198,11 @@ public class Driver
                 System.out.print("Enter flight number : ");
                 String flight = stdin.readLine();
                 System.out.println(flight);
-
-                if(atc.findRunwayIndex(flight) != null)
+                Plane searchPlane = new Plane(flight, null, null);
+                              
+                if(atc.getClearance().search(searchPlane) >= 0)
                 {
-                    Plane searchPlane = new Plane(flight, null, null);
+                  
                     try
                     {
                         cleared = atc.reEnterRunway(searchPlane);

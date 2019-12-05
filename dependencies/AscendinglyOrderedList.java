@@ -161,11 +161,11 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
             success = false;
             if(item.getKey().compareTo((items[low]).getKey()) > 0)
             {
-                return high + 1;
+                return -(high + 1);
             }
             else
             {
-                return high;
+                return -high;
             }
         }
     }

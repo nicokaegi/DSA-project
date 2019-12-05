@@ -397,11 +397,11 @@ public class AirTrafficControl
             if(runways.get(pos)!=null)
             {
                 if(runways.get(pos).getName().equals(runway)) {
-
-                    return pos;
+                    return new Integer(pos);
                 }
             }
         }
         return null;
     }
+    
 }

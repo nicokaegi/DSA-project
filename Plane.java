@@ -1,6 +1,6 @@
 /**
  * Purpose: Data Structure and Algorithms Project
- * Status: Barely started
+ * Status: Complete and Thoroughly Tested
  * Last update: 12/04/19
  * Submitted: 12/05/19
  * Comment: test suite and sample run attached
