@@ -14,7 +14,7 @@
 import java.io.*;
 
 import dependencies.ListArrayBasedPlus;
-import dependencies.MyBinarySearchTreePlus;
+import dependencies.AscendinglyOrderedList;
 
 public class AirTrafficControl
 {
@@ -24,7 +24,7 @@ public class AirTrafficControl
     
     /** Binary Search Tree that holds all planes waiting for clearance to launch **/
     
-    private MyBinarySearchTreePlus<Plane<?>, String> clearance;
+    private AscendinglyOrderedList<Plane<?>, String> clearance;
     
     /**Integer counting how many planes have taken off **/
     
@@ -41,7 +41,7 @@ public class AirTrafficControl
     public AirTrafficControl()
     {
 	runways = new ListArrayBasedPlus<Runway>();
-	clearance = new MyBinarySearchTreePlus<Plane<?>, String>();
+	clearance = new AscendinglyOrderedList<Plane<?>, String>();
     }
     
     /**
@@ -175,7 +175,7 @@ public class AirTrafficControl
 
         } else {
 
-            clearance.insert(runways.get(position).dequeueFromRunway());
+            clearance.add(runways.get(position).dequeueFromRunway());
 
             position = (position + 1) % (runways.size());
 
@@ -187,7 +187,7 @@ public class AirTrafficControl
      * MEthod to return the list of planes waiting for clearance.
      * @return the clearance list
      */
-    public MyBinarySearchTreePlus<Plane<?>, String> getClearance()
+    public AscendinglyOrderedList<Plane<?>, String> getClearance()
     {
         return clearance;
     }
@@ -221,7 +221,7 @@ public class AirTrafficControl
      * @param clearance
      * 		a clearance list.
      */
-    public void setClearance(MyBinarySearchTreePlus<Plane<?>, String> clearance)
+    public void setClearance(AscendinglyOrderedList<Plane<?>, String> clearance)
     {
         this.clearance = clearance;
     }
@@ -252,10 +252,11 @@ public class AirTrafficControl
      * @param flight
      * 		The flight number of the plane we are looking for.
      */
-    public void reEnterRunway(String flight)
+    public void reEnterRunway(Plane<?> flight)
     {
-        Plane<?> tempPlane = clearance.retrieve(flight);
-	clearance.delete(flight);
+	int tempIndex = clearance.search(flight);
+        Plane<?> tempPlane = clearance.get(tempIndex);
+	clearance.remove(tempIndex);
 
         if (tempPlane != null)
         {
@@ -316,6 +317,33 @@ public class AirTrafficControl
      */
     public void clearanceLoop(String oldRunway, BufferedReader stdin) throws IOException
     {
+	for(int i = 0; i < clearance.size(); i++)
+	    {
+		if(clearance.get(i).getRunway().compareTo(oldRunway) == 0)
+		    {
+			Plane tempPlane = clearance.get(i);
+			System.out.println("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
+		            String newRunway = stdin.readLine();
+
+		            if(newRunway.equals(oldRunway))
+		            {
+		                System.out.println("This is the runway that is closing!");
+		            }
+		            else if(findRunway(newRunway) != null)
+		            {
+		                tempPlane.setRunway(newRunway);
+
+		                System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on Runway " + tempPlane.getRunway());
+		            }
+		            else
+		            {
+		                System.out.println("No such runway!");
+		            }
+		    }
+	    }
+    }
+   /* public void clearanceLoop(String oldRunway, BufferedReader stdin) throws IOException
+    {
         ListArrayBasedPlus<Plane<?>> tempClosure = new ListArrayBasedPlus<Plane<?>>();
 
         ListArrayBasedPlus<Plane<?>> flatTree = clearance.flattenTree();
@@ -350,7 +378,7 @@ public class AirTrafficControl
                 System.out.println("No such runway!");
             }
         }
-    }
+    }*/
 
     /**
      * A method to print out the amount of planes who have taken off.
@@ -369,12 +397,7 @@ public class AirTrafficControl
 	    {
         System.out.println("These planes are waiting to be cleared to re-enter a runway:");
 	// System.out.println(clearance.toStringPreorder());
-	 ListArrayBasedPlus<Plane<?>> flatTree = clearance.flattenTree();
-
-	 for(int i = 0; i < flatTree.size(); i++)
-	     {
-		 System.out.println(flatTree.get(i).toString());
-	     }
+        System.out.println(clearance.toString());
 	    }
 	else
 	    {

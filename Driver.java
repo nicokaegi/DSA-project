@@ -198,9 +198,10 @@ public class Driver
             System.out.print("Enter flight number : ");
             String flight = stdin.readLine();
             System.out.println(flight);
+            Plane searchPlane = new Plane(flight, "holderDest", "holderRunway");
             try
             {
-                atc.reEnterRunway(flight);
+                atc.reEnterRunway(searchPlane);
             }
             catch (Exception e)
             {
