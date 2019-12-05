@@ -9,7 +9,7 @@
  *
  * @author: Nico Kaegi - Section 2
  *
- * @version: 2019.12.04 
+ * @version: 2019.12.04
  */
 
 import java.io.*;
@@ -199,14 +199,12 @@ public class Driver
                 String flight = stdin.readLine();
                 System.out.println(flight);
                 Plane searchPlane = new Plane(flight, null, null);
-                              
+
                 if(atc.getClearance().search(searchPlane) >= 0)
                 {
-                  
                     try
                     {
                         cleared = atc.reEnterRunway(searchPlane);
-
                     }
                     catch (Exception e)
                     {

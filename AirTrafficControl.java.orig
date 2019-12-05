@@ -226,22 +226,28 @@ public class AirTrafficControl
      *
      * @param flight
      * 		The flight number of the plane we are looking for.
+     * @return whether the flight was successfully added
      */
-    public void reEnterRunway(Plane<?> flight)
+    public boolean reEnterRunway(Plane<?> flight)
     {
         int tempIndex = clearance.search(flight);
+
+	if(tempIndex < 0)
+	    {
+		System.out.println("Flight " + flight.getFlightNumber() + " is not waiting for clearance.");
+		return false;
+		
+	    }
+	else
+	    {
         Plane<?> tempPlane = clearance.get(tempIndex);
         clearance.remove(tempIndex);
 
-        if (tempPlane != null)
-        {
-            Runway tempRunway = findRunway(tempPlane.getRunway());
-            tempRunway.enqueueToRunway(tempPlane);
-            System.out.println("Flight " + flight + " is now waiting for takeoff on runway " + tempPlane.getRunway());
+            findRunway(tempPlane.getRunway()).enqueueToRunway(tempPlane);
+	    System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on runway " + tempPlane.getRunway());
+            return true;
         }
-        {
-            System.out.println("Flight " + flight + " is not waiting for clearance.");
-        }
+	    
     }
 
     /**
@@ -254,36 +260,36 @@ public class AirTrafficControl
      */
     public void runwayLoop(String oldRunway, BufferedReader stdin) throws IOException
     {
-	if(findRunway(oldRunway) != null)
-	    {
-		while(!findRunway(oldRunway).isEmpty())
-		    {
-			Plane tempPlane = findRunway(oldRunway).peekRunway();
+        if(findRunway(oldRunway) != null)
+        {
+            while(!findRunway(oldRunway).isEmpty())
+            {
+                Plane tempPlane = findRunway(oldRunway).peekRunway();
 
-			System.out.print("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
-			String newRunway = stdin.readLine();
-			System.out.println(newRunway);
+                System.out.print("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
+                String newRunway = stdin.readLine();
+                System.out.println(newRunway);
 
-			if(findRunway(newRunway) != null)
-			{
-			    if(newRunway.equals(oldRunway))
-			       {
-				   System.out.println("This is the runway that is closing!");
-			       }
-			    else
-				{
-				    tempPlane.setRunway(newRunway);
-				    findRunway(newRunway).enqueueToRunway(tempPlane);
-				    System.out.println("Flight " +tempPlane.getFlightNumber() + " is now waiting for takeoff on runway " + tempPlane.getRunway());
-				    findRunway(oldRunway).dequeueFromRunway();
-				}
-			}
-			else
-			    {
-				System.out.println("No such runway!");
-			    }
-		    }
-	    }
+                if(findRunway(newRunway) != null)
+                {
+                    if(newRunway.equals(oldRunway))
+                    {
+                        System.out.println("This is the runway that is closing!");
+                    }
+                    else
+                    {
+                        tempPlane.setRunway(newRunway);
+                        findRunway(newRunway).enqueueToRunway(tempPlane);
+                        System.out.println("Flight " +tempPlane.getFlightNumber() + " is now waiting for takeoff on runway " + tempPlane.getRunway());
+                        findRunway(oldRunway).dequeueFromRunway();
+                    }
+                }
+                else
+                {
+                    System.out.println("No such runway!");
+                }
+            }
+        }
     }
 
     /**
@@ -388,18 +394,18 @@ public class AirTrafficControl
      *A method to find the INDEX of the runway we are looking to delete.
      *@param runway the runway we are looking to delete
      */
-    private Integer findRunwayIndex(String runway)
+    public Integer findRunwayIndex(String runway)
     {
         for(int pos = 0; pos < runways.size(); pos++) {
 
             if(runways.get(pos)!=null)
             {
                 if(runways.get(pos).getName().equals(runway)) {
-
-                    return pos;
+                    return new Integer(pos);
                 }
             }
         }
         return null;
     }
+
 }

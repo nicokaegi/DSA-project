@@ -231,19 +231,23 @@ public class AirTrafficControl
     public boolean reEnterRunway(Plane<?> flight)
     {
         int tempIndex = clearance.search(flight);
-        Plane<?> tempPlane = clearance.get(tempIndex);
-        clearance.remove(tempIndex);
 
-        if (tempPlane != null)
+        if(tempIndex < 0)
         {
+            System.out.println("Flight " + flight.getFlightNumber() + " is not waiting for clearance.");
+            return false;
+
+        }
+        else
+        {
+            Plane<?> tempPlane = clearance.get(tempIndex);
+            clearance.remove(tempIndex);
+
             findRunway(tempPlane.getRunway()).enqueueToRunway(tempPlane);
-	    System.out.println("Flight " + flight + " is now waiting for takeoff on runway " + tempPlane.getRunway());
-	    return true;
+            System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on runway " + tempPlane.getRunway());
+            return true;
         }
-        {
-	    System.out.println("Flight " + flight + " is not waiting for clearance.");
-	    return false;
-        }
+
     }
 
     /**
@@ -403,5 +407,5 @@ public class AirTrafficControl
         }
         return null;
     }
-    
+
 }

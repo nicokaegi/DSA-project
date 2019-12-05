@@ -44,6 +44,11 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
 
         if(!success)
         {
+	    if(index < 0)
+		{
+		    //convert negative index back to a positive.
+		    index = index -(index*2);
+		}
             if (index >= 0 && index <= numItems)
             {
                 // make room for new element by shifting all items at
@@ -165,7 +170,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
             }
             else
             {
-                return -high;
+                return - high;
             }
         }
     }
