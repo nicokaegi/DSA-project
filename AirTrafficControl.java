@@ -157,7 +157,7 @@ public class AirTrafficControl
             clearance.add(runways.get(position).dequeueFromRunway());
             System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting to be allowed to re-enter a runway.");
             position = (position + 1) % (runways.size());
-            
+
         }
     }
 
@@ -297,20 +297,21 @@ public class AirTrafficControl
     {
         for(int i = 0; i < clearance.size(); i++)
         {
-            if(clearance.get(i).getRunway().compareTo(oldRunway) == 0)
+            if(clearance.get(i).getRunway().equals(oldRunway))
             {
                 Plane tempPlane = clearance.get(i);
                 System.out.print("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
                 String newRunway = stdin.readLine();
                 System.out.println(newRunway);
 
-                if(newRunway.equals(oldRunway))
+                if(findRunway(newRunway) != null)
                 {
-                    System.out.println("This is the runway that is closing!");
-                }
-                else if(findRunway(newRunway) != null)
-                {
-                    tempPlane.setRunway(newRunway);
+
+                    if(newRunway.equals(oldRunway))
+                    {
+                        System.out.println("This is the runway that is closing!");
+                    }
+                    clearance.get(i).setRunway(newRunway);
 
                     System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on Runway " + tempPlane.getRunway());
                 }
@@ -337,7 +338,6 @@ public class AirTrafficControl
         if(!clearance.isEmpty())
         {
             System.out.println("These planes are waiting to be cleared to re-enter a runway:");
-            // System.out.println(clearance.toStringPreorder());
             System.out.println(clearance.toString());
         }
         else
@@ -352,18 +352,18 @@ public class AirTrafficControl
      */
     public void printRunways()
     {
-	
+
         for(int i = 0; i < runways.size(); i++)
         {
             if(runways.get(i).isEmpty())
-        	{
-        	   System.out.println("No planes are waiting for takeoff on runway " + runways.get(i).getName() + "!"); 
-        	}
+            {
+                System.out.println("No planes are waiting for takeoff on runway " + runways.get(i).getName() + "!");
+            }
             else
-        	{
-            System.out.println("These planes are waiting for takeoff on runway " + runways.get(i).getName());
-            System.out.print(runways.get(i).toString());
-        	}
+            {
+                System.out.println("These planes are waiting for takeoff on runway " + runways.get(i).getName());
+                System.out.print(runways.get(i).toString());
+            }
         }
     }
 

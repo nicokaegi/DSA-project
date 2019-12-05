@@ -43,7 +43,7 @@ public class Driver
         /** Temporary plane used for creating new planes **/
         Plane planeHolder;
 
-        
+
         System.out.println("Welcome to the Airport program!");
         //Initial runway setup
         System.out.print("Enter number of runways: ");
@@ -253,14 +253,9 @@ public class Driver
             oldRunway = stdin.readLine();
             System.out.println(oldRunway);
         }
-        atc.runwayLoop(oldRunway, stdin);
-        if(atc.getClearance() != null)
-        {
+        atc.runwayLoop(oldRunway, stdin);      
             atc.clearanceLoop(oldRunway, stdin);
-        }
-
-
-
+        
         System.out.println("Runway " + oldRunway + " has been closed.");
     }// end closeRunway
 }
