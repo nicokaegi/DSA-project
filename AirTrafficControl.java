@@ -24,7 +24,7 @@ public class AirTrafficControl
     
     /** Binary Search Tree that holds all planes waiting for clearance to launch **/
     
-    private AscendinglyOrderedList<Plane<?>, String> clearance;
+    private AscendinglyOrderedList<Plane<?>, String> clearance = new AscendinglyOrderedList<Plane<?>, String>();;
     
     /**Integer counting how many planes have taken off **/
     
@@ -41,7 +41,7 @@ public class AirTrafficControl
     public AirTrafficControl()
     {
 	runways = new ListArrayBasedPlus<Runway>();
-	clearance = new AscendinglyOrderedList<Plane<?>, String>();
+	//clearance = new AscendinglyOrderedList<Plane<?>, String>();
     }
     
     /**

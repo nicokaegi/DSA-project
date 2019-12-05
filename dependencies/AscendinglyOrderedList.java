@@ -22,7 +22,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
 
     public AscendinglyOrderedList()
     {
-        items = (T[]) new Object[MAX_LIST];
+        items = (T[]) new KeyedItem[MAX_LIST];
         numItems = 0;
     }
     public boolean isEmpty() {
@@ -171,13 +171,13 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
     }
 
     public void clear() {
-        items = (T[]) new Object[MAX_LIST];
+        items = (T[]) new KeyedItem[MAX_LIST];
         numItems = 0;
     }
 
     private void resize()
     {
-        T []temp = (T[]) new Object[items.length + (items.length/2)];
+        T []temp = (T[]) new KeyedItem[items.length + (items.length/2)];
 
         for (int i = 0; i < items.length; i++)
         {
