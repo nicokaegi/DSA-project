@@ -190,19 +190,28 @@ public class Driver
 
     private static void reEnterPlane(AirTrafficControl atc) throws IOException
     {
+        boolean cleared = false;
         if(!atc.getClearance().isEmpty())
         {
-            System.out.print("Enter flight number : ");
-            String flight = stdin.readLine();
-            System.out.println(flight);
-            Plane searchPlane = new Plane(flight, "holderDest", "holderRunway");
-            try
+            while(!cleared)
             {
-                atc.reEnterRunway(searchPlane);
-            }
-            catch (Exception e)
-            {
-                System.out.println("Unable to re-queue plane to runway!");
+                System.out.print("Enter flight number : ");
+                String flight = stdin.readLine();
+                System.out.println(flight);
+
+                if(atc.findRunwayIndex(flight) != null)
+                {
+                    Plane searchPlane = new Plane(flight, null, null);
+                    try
+                    {
+                        cleared = atc.reEnterRunway(searchPlane);
+
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println("Unable to re-queue plane to runway!");
+                    }
+                }
             }
         }
         else
@@ -253,9 +262,9 @@ public class Driver
             oldRunway = stdin.readLine();
             System.out.println(oldRunway);
         }
-        atc.runwayLoop(oldRunway, stdin);      
-            atc.clearanceLoop(oldRunway, stdin);
-        
+        atc.runwayLoop(oldRunway, stdin);
+        atc.clearanceLoop(oldRunway, stdin);
+
         System.out.println("Runway " + oldRunway + " has been closed.");
     }// end closeRunway
 }

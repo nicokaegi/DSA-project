@@ -1,15 +1,14 @@
 /**
  * Purpose: Data Structure and Algorithms Project
- * Status: Barely started
- * Last update: 12/02/19
+ * Status: Complete and Thoroughly Tested
+ * Last update: 12/04/19
  * Submitted: 12/05/19
  * Comment: test suite and sample run attached
  *
  * @author: Theresa Morris - Section 2
- *
  * @author: Nico Kaegi - Section 2
  *
- * @version: 2019.12.02 AirTrafficControl.java
+ * @version: 2019.12.04
  */
 import java.io.*;
 
@@ -24,7 +23,7 @@ public class AirTrafficControl
 
     /** Binary Search Tree that holds all planes waiting for clearance to launch **/
 
-    private AscendinglyOrderedList<Plane<?>, String> clearance = new AscendinglyOrderedList<Plane<?>, String>();;
+    private AscendinglyOrderedList<Plane<?>, String> clearance = new AscendinglyOrderedList<Plane<?>, String>();
 
     /**Integer counting how many planes have taken off **/
 
@@ -144,8 +143,6 @@ public class AirTrafficControl
      */
     public void takeOff(boolean clearnce) {
 
-        //System.out.println(runways.get(0).getName());
-
         if(clearnce) {
             Plane tempPlane = runways.get(position).peekRunway();
             runways.get(position).dequeueFromRunway();
@@ -241,7 +238,7 @@ public class AirTrafficControl
             Runway tempRunway = findRunway(tempPlane.getRunway());
             tempRunway.enqueueToRunway(tempPlane);
             System.out.println("Flight " + flight + " is now waiting for takeoff on runway " + tempPlane.getRunway());
-        } else
+        }
         {
             System.out.println("Flight " + flight + " is not waiting for clearance.");
         }
@@ -257,36 +254,40 @@ public class AirTrafficControl
      */
     public void runwayLoop(String oldRunway, BufferedReader stdin) throws IOException
     {
-        Runway tempRunway = findRunway(oldRunway);
+	if(findRunway(oldRunway) != null)
+	    {
+		while(!findRunway(oldRunway).isEmpty())
+		    {
+			Plane tempPlane = findRunway(oldRunway).peekRunway();
 
-        if(tempRunway!= null)
-        {
+			System.out.print("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
+			String newRunway = stdin.readLine();
+			System.out.println(newRunway);
 
-            while(!tempRunway.isEmpty())
-            {
-                Plane<?> tempPlane = tempRunway.dequeueFromRunway();
-
-                System.out.print("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
-                String newRunway = stdin.readLine();
-                System.out.println(newRunway);
-
-                if(findRunway(newRunway) != null)
-                {
-                    if(newRunway.equals(oldRunway))
-                    {
-                        System.out.println("This is the runway that is closing!");
-                    }
-                    tempPlane.setRunway(newRunway);
-                    findRunway(newRunway).enqueueToRunway(tempPlane);
-                    System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on Runway " + tempPlane.getRunway());
-                }
-                System.out.println("No such runway!");
-            }
-        }
+			if(findRunway(newRunway) != null)
+			{
+			    if(newRunway.equals(oldRunway))
+			       {
+				   System.out.println("This is the runway that is closing!");
+			       }
+			    else
+				{
+				    tempPlane.setRunway(newRunway);
+				    findRunway(newRunway).enqueueToRunway(tempPlane);
+				    System.out.println("Flight " +tempPlane.getFlightNumber() + " is now waiting for takeoff on runway " + tempPlane.getRunway());
+				    findRunway(oldRunway).dequeueFromRunway();
+				}
+			}
+			else
+			    {
+				System.out.println("No such runway!");
+			    }
+		    }
+	    }
     }
 
     /**
-     * Method to flatten the clearance list (into a new list), look through that for anything matching the runway being closed, then reassign any of those planes to new runways, without re-enqueueing them for launch.
+     * Method to look through the clearance list for any runway matching the closing runway, then reassign any of those planes to new runways, without re-enqueueing them for launch.
      * @param oldRunway
      * 		The runway being closed
      * @param stdin
@@ -306,14 +307,17 @@ public class AirTrafficControl
 
                 if(findRunway(newRunway) != null)
                 {
-		    
-                if(newRunway.equals(oldRunway))
-                {
-                    System.out.println("This is the runway that is closing!");
-                }
-                    tempPlane.setRunway(newRunway);
 
-                    System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on Runway " + tempPlane.getRunway());
+                    if(newRunway.equals(oldRunway))
+                    {
+                        System.out.println("This is the runway that is closing!");
+                    }
+                    else
+                    {
+                        clearance.get(i).setRunway(newRunway);
+
+                        System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on Runway " + tempPlane.getRunway());
+                    }
                 }
                 else
                 {
