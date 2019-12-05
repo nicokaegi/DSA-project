@@ -65,11 +65,11 @@ public class Runway
     {
         if(!planes.isEmpty())
         {
-            return planes.toString();
+            return (planes.toString());
         }
         else
         {
-            return " ";
+            return null;
         }
     }
 

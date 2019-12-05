@@ -91,13 +91,10 @@ public class AirTrafficControl
         Runway temp = findRunway(newPlane.getRunway());
 
         if(temp != null) {
-
             temp.enqueueToRunway(newPlane);
-
             return true;
         }
         else {
-
             return false;
         }
     }
@@ -110,20 +107,13 @@ public class AirTrafficControl
     public boolean addRunWay(String name) {
 
         if(findRunway(name) == null) {
-
-
             runways.add(totalRunways, new Runway(name));
             totalRunways++;
-
             return true;
-
         }
         else {
-
             return false;
-
         }
-
     }
 
     /**
@@ -138,22 +128,13 @@ public class AirTrafficControl
             if(runways.get(position).isEmpty()) {
 
                 position = (position + 1) % runways.size();
-
-
             }
             else {
-
                 return runways.get(position).peekRunway();
-
             }
-
         }
 
         return null;
-
-        //position = (position + 1) % (runways.size());
-
-
     }
 
     /**
@@ -166,21 +147,18 @@ public class AirTrafficControl
         //System.out.println(runways.get(0).getName());
 
         if(clearnce) {
-
+            Plane tempPlane = runways.get(position).peekRunway();
             runways.get(position).dequeueFromRunway();
-
+            System.out.println("Flight " + tempPlane.getFlightNumber() + " has now taken off from runway " + tempPlane.getRunway());
             position = (position + 1) % (runways.size());
-
             count++;
-
         } else {
-
+            Plane tempPlane = runways.get(position).peekRunway();
             clearance.add(runways.get(position).dequeueFromRunway());
-
+            System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting to be allowed to re-enter a runway.");
             position = (position + 1) % (runways.size());
-
+            
         }
-
     }
 
     /**
@@ -292,8 +270,7 @@ public class AirTrafficControl
                 String newRunway = stdin.readLine();
                 System.out.println(newRunway);
 
-
-                while(findRunway(newRunway) != null)
+                if(findRunway(newRunway) != null)
                 {
                     if(newRunway.equals(oldRunway))
                     {
@@ -303,14 +280,9 @@ public class AirTrafficControl
                     findRunway(newRunway).enqueueToRunway(tempPlane);
                     System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on Runway " + tempPlane.getRunway());
                 }
-
                 System.out.println("No such runway!");
             }
-
-
         }
-
-
     }
 
     /**
@@ -349,44 +321,6 @@ public class AirTrafficControl
             }
         }
     }
-    /* public void clearanceLoop(String oldRunway, BufferedReader stdin) throws IOException
-     {
-         ListArrayBasedPlus<Plane<?>> tempClosure = new ListArrayBasedPlus<Plane<?>>();
-
-         ListArrayBasedPlus<Plane<?>> flatTree = clearance.flattenTree();
-
-         for(int i = 0; i < flatTree.size(); i++)
-         {
-             if(flatTree.get(i).getRunway().equals(oldRunway))
-             {
-                 tempClosure.add(0,  flatTree.get(i));
-             }
-         }
-
-         for(int i = 0; i<tempClosure.size(); i++)
-         {
-             Plane tempPlane = tempClosure.get(i);
-
-             System.out.println("Enter new runway for plane " + tempPlane.getFlightNumber() + " : ");
-             String newRunway = stdin.readLine();
-
-             if(newRunway.equals(oldRunway))
-             {
-                 System.out.println("This is the runway that is closing!");
-             }
-             else if(findRunway(newRunway) != null)
-             {
-                 tempPlane.setRunway(newRunway);
-
-                 System.out.println("Flight " + tempPlane.getFlightNumber() + " is now waiting for takeoff on Runway " + tempPlane.getRunway());
-             }
-             else
-             {
-                 System.out.println("No such runway!");
-             }
-         }
-     }*/
-
     /**
      * A method to print out the amount of planes who have taken off.
      */
@@ -418,10 +352,18 @@ public class AirTrafficControl
      */
     public void printRunways()
     {
+	
         for(int i = 0; i < runways.size(); i++)
         {
+            if(runways.get(i).isEmpty())
+        	{
+        	   System.out.println("No planes are waiting for takeoff on runway " + runways.get(i).getName() + "!"); 
+        	}
+            else
+        	{
             System.out.println("These planes are waiting for takeoff on runway " + runways.get(i).getName());
             System.out.print(runways.get(i).toString());
+        	}
         }
     }
 
@@ -436,7 +378,6 @@ public class AirTrafficControl
         {
             runways.remove(findRunwayIndex(runway));
         }
-
     }
 
     /**
@@ -454,11 +395,7 @@ public class AirTrafficControl
                     return pos;
                 }
             }
-
         }
-
         return null;
     }
-
-
 }

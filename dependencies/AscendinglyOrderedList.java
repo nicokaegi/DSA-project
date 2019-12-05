@@ -193,7 +193,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
 
         for (int i = 0; i < numItems; i++)
         {
-            buildList.append(items[i] + " ");
+            buildList.append(items[i] + "\n");
         }
 
         return buildList.toString();

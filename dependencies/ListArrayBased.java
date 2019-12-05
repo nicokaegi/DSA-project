@@ -107,7 +107,7 @@ public class ListArrayBased<T> implements ListInterface<T>
 
         for(int i = 0; i<numItems; i++)
         {
-            buildItems.append(items[i] + " ");
+            buildItems.append(items[i] + "\n");
         }
 
         return buildItems.toString();

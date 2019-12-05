@@ -43,9 +43,10 @@ public class Driver
         /** Temporary plane used for creating new planes **/
         Plane planeHolder;
 
-
+        
+        System.out.println("Welcome to the Airport program!");
         //Initial runway setup
-        System.out.print("how many runways ?");
+        System.out.print("Enter number of runways: ");
 
         intHolder = Integer.parseInt(stdin.readLine());
         System.out.println(intHolder);
@@ -53,7 +54,7 @@ public class Driver
         for (int pos = 1; pos <= intHolder; pos++)
         {
 
-            System.out.print(pos + " runway name ?");
+            System.out.print(pos + "Enter the name of runway number " + pos + ": ");
 
             stringHolder = stdin.readLine();
 
@@ -61,11 +62,11 @@ public class Driver
 
             if (atc.addRunWay(stringHolder))
             {
-                System.out.println("success");
+                //System.out.println("success");
 
             } else
             {
-                System.out.println("error not unique name please try again");
+                System.out.println("Error, this name is not unique.");
                 intHolder++;
             }
         }
@@ -95,30 +96,26 @@ public class Driver
                 break;
             case 1:
                 //Case 1:  Enter new plane into system
-                System.out.print(
-                    "1 : plane entering system please enter flight number, destination, and take off run way");
-
+                System.out.print("Enter flight number: ");
                 String newFlight = stdin.readLine();
-
                 System.out.println(newFlight);
-
+                System.out.print("Enter destination: ");
                 String newDest = stdin.readLine();
-
                 System.out.println(newDest);
-
+                System.out.print("Enter runway: ");
                 String newRunway = stdin.readLine();
-
                 System.out.println(newRunway);
 
                 while( atc.findRunway(newRunway) == null) {
-
+                    System.out.println("No such runway!");
+                    System.out.print("Enter runway: ");
                     newRunway = stdin.readLine();
-
                     System.out.println(newRunway);
 
                 }
 
                 atc.enterAirPlane(new Plane(newFlight, newDest, newRunway));
+                System.out.println("Flight " + newFlight + " is now waiting for takeoff on runway " + newRunway + ".");
 
                 break;
             case 2:
@@ -128,7 +125,7 @@ public class Driver
                 if(planeHolder != null) {
 
                     System.out.println(
-                        "is " + planeHolder.getFlightNumber() + "  cleared for take off Y/N");
+                        "Is Flight " + planeHolder.getFlightNumber() + "  cleared for take off (Y/N): ");
 
                     System.out.println();//remove this later.
 
@@ -150,8 +147,8 @@ public class Driver
                 else {
 
                     //incase there are no planes at a runways (the minus on is intentional since postion get updated even when currentTakeOfPlane() returns null)
-                    System.out.println("no planes at runway" + ( atc.getPosition() - 1 ) );
-
+                    //System.out.println("no planes at runway" + ( atc.getPosition() - 1 ) );
+                    System.out.println("No plane on any runway!");
                 }
 
                 break;
