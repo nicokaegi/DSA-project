@@ -1,17 +1,25 @@
-package dependencies;
-/*
- * Purpose: Data Structure and Algorithms Lab 2 Problem 1
- * Status: Complete and thoroughly tested
- * Last update: 09/23/19
- * Submitted:  09/17/19 - Redo 9/24/19
+/**
+ * Purpose: Data Structure and Algorithms Project
+ * Status: Complete and Thoroughly Tested
+ * Last update: 12/04/19
+ * Submitted: 12/05/19
  * Comment: test suite and sample run attached
- * @author: Theresa Morris
- * @version: 2019.09.23
+ *
+ * @author: Theresa Morris - Section 2
+ *
+ * @author: Nico Kaegi - Section 2
+ *
+ * @version: 2019.12.04
  */
+package dependencies;
 
 public class ListArrayBasedPlus<T> extends ListArrayBased<T>
 {
-
+    /**
+     * Takes in an index and an item, and if our array is full, resizes before adding
+     * @param index the index we are adding at
+     * @param item the item we are adding
+     */
     public void add(int index, T item) throws ListIndexOutOfBoundsException
     {
         if (numItems >= items.length)
@@ -21,7 +29,9 @@ public class ListArrayBasedPlus<T> extends ListArrayBased<T>
         super.add(index, item);
 
     }
-
+/**
+ * If our array is full, resizes the array to half again its size.
+ */
     private void resize()
     {
         T []temp = (T[]) new Object[items.length + (items.length/2)];
@@ -33,7 +43,9 @@ public class ListArrayBasedPlus<T> extends ListArrayBased<T>
         items = temp;
 
     }
-
+/**
+ * Reverses the array.
+ */
     public void reverse()
     {
         T []temp = (T[]) new Object[items.length];
@@ -44,7 +56,11 @@ public class ListArrayBasedPlus<T> extends ListArrayBased<T>
         }
         items = temp;
     }
-
+@Override
+/**
+ * Parses through the array and creates a sting representation of all of the items in it.
+ * @return the string repersentation of the list.
+ */
     public String toString()
     {
         StringBuilder buildList = new StringBuilder();

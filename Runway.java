@@ -26,7 +26,7 @@ public class Runway
         planes = new QueueSLS<Plane>();
     }
     /**
-    * A method to return the runway's name
+    * return the runway's name
     * @return the name
     */
     public String getName()
@@ -34,7 +34,7 @@ public class Runway
         return name;
     }
     /**
-     * A method to return the runway's queue of planes
+     * return the runway's queue of planes
      * @return the planes
      */
     public QueueSLS<Plane> getPlanes()
@@ -42,7 +42,7 @@ public class Runway
         return planes;
     }
     /**
-     * A method to set the runway's name
+     * set the runway's name
      * @param name the name to set
      */
     public void setName(String name)
@@ -50,7 +50,7 @@ public class Runway
         this.name = name;
     }
     /**
-     * A method to set the runway's queue of planes
+     * set the runway's queue of planes
      * @param planes the planes to set
      */
     public void setPlanes(QueueSLS<Plane> planes)

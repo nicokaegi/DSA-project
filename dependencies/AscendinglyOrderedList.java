@@ -1,23 +1,31 @@
+/**
+ * Purpose: Data Structure and Algorithms Project
+ * Status: Complete and Thoroughly Tested
+ * Last update: 12/04/19
+ * Submitted: 12/05/19
+ * Comment: test suite and sample run attached
+ *
+ * @author: Theresa Morris - Section 2
+ *
+ * @author: Nico Kaegi - Section 2
+ *
+ * @version: 2019.12.04
+ */
 package dependencies;
 
 import dependencies.AscendinglyOrderedListInterface;
 import dependencies.KeyedItem;
 import dependencies.ListIndexOutOfBoundsException;
 
-/*
- * Purpose: Data Structure and Algorithms Lab 8 Problem 3
- * Status: Complete and thoroughly tested
- * Last update: 11/04/19
- * Submitted:  11/05/19
- * Comment: test suite and sample run attached
- * @author: Theresa Morris - Section 2
- * @version: 2019.11.04
- */
 public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparable
     <? super KT>> implements AscendinglyOrderedListInterface<T, KT> {
+	/**Initial size of the Ascendingly Ordered List **/
     private static final int MAX_LIST = 3;
-    protected T[] items;  // an array of list items
-    protected int numItems;  // number of items in list
+    /** array of generic items **/
+    protected T[] items;  
+    /** how many items are stored (as opposed to repeatedly counting) **/
+    protected int numItems; 
+    /** Whether we succussfully added something**/
     boolean success = false;
 
     public AscendinglyOrderedList()
@@ -25,16 +33,26 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         items = (T[]) new KeyedItem[MAX_LIST];
         numItems = 0;
     }
+    /**
+     * returns whether the array is empty
+     * @return whether the array is empty
+     */
     public boolean isEmpty() {
         return (numItems == 0);
     }
 
-
+/**
+ * returns number of items in the array
+ * @return number of items in the array
+ */
     public int size() {
         return numItems;
     }
 
-
+/**
+ * takes a generic item, searches for where it should be located (in this case lexicographically), and inserts it in place.
+ * @param item the item we are looking to add
+ */
     public void add(T item) throws ListIndexOutOfBoundsException {
         if (numItems >= items.length)
         {
@@ -78,7 +96,11 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
 
 
 
-
+/**
+ * takes in the index of an item we are looking for, and returns that item.
+ * @param index the index of the item we want
+ * @return the item we are retrieving
+ */
     public T get(int index) throws ListIndexOutOfBoundsException {
         {
             if (index >= 0 && index < numItems)
@@ -94,7 +116,10 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         } // end get
     }
 
-
+/**
+ * Takes in an index and deletes the relevant item, shifting everything to accomidate.
+ * @param index the index we are removing
+ */
     public void remove(int index) throws ListIndexOutOfBoundsException {
         if (index >= 0 && index < numItems)
         {
@@ -118,7 +143,12 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         }  // end if
     }
 
-
+/**
+ * Searches for an item in teh array.  If it finds it, it just tells us where it was and does not allow us to insert a duplcate.
+ * If the item isn't found at all, it returns a negative version of the high index (the negative indicates the item was not succssfully located)
+ * @param item a generic item we are searching for
+ * @return The index where we found the item, or the index where we need to insert it.
+ */
     public int search(T item) {
 
         int low = 0;
@@ -174,12 +204,16 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
             }
         }
     }
-
+/**
+ * Empties the array by deleting it
+ */
     public void clear() {
         items = (T[]) new KeyedItem[MAX_LIST];
         numItems = 0;
     }
-
+/**
+ * When the array is full, resizes it as needed.
+ */
     private void resize()
     {
         T []temp = (T[]) new KeyedItem[items.length + (items.length/2)];
@@ -191,7 +225,10 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         items = temp;
 
     }
-
+/**
+ * parses through all of the array and concatinates it into one string.
+ * @return a string representation of the array
+ */
     public String toString()
     {
         StringBuilder buildList = new StringBuilder();

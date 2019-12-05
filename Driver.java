@@ -14,7 +14,6 @@
 
 import java.io.*;
 
-import dependencies.ListArrayBasedPlus;
 
 
 public class Driver
@@ -229,7 +228,7 @@ public class Driver
     {
         System.out.print("Enter the name of the new runway : ");
         String newRunway = stdin.readLine();
-        System.out.print(newRunway);
+        System.out.println(newRunway);
 
         while(!(atc.addRunWay(newRunway)))
         {
@@ -237,7 +236,7 @@ public class Driver
 
             System.out.print("Enter the name of the new runway : ");
             newRunway = stdin.readLine();
-            System.out.print(newRunway);
+            System.out.println(newRunway);
 
         }
         System.out.println("Runway " + newRunway + " has opened.");
