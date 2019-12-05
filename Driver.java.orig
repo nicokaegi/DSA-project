@@ -198,9 +198,10 @@ public class Driver
             System.out.print("Enter flight number : ");
             String flight = stdin.readLine();
             System.out.println(flight);
+            Plane searchPlane = new Plane(flight, "holderDest", "holderRunway");
             try
             {
-                atc.reEnterRunway(flight);
+                atc.reEnterRunway(searchPlane);
             }
             catch (Exception e)
             {
@@ -224,38 +225,45 @@ public class Driver
         String newRunway = stdin.readLine();
         System.out.print(newRunway);
 
-        while(!atc.addRunway(newRunway))
-	    {
-		System.out.println("Runway " + newRunway + " already exists please choose another name. ");
+        while(!(atc.addRunWay(newRunway)))
+        {
+            System.out.println("Runway " + newRunway + " already exists please choose another name. ");
 
             System.out.print("Enter the name of the new runway : ");
-            String newRunway = stdin.readLine();
+            newRunway = stdin.readLine();
             System.out.print(newRunway);
 
-	    }
+        }
         System.out.println("Runway " + newRunway + " has opened.");
-}// end openRunway
+    }// end openRunway
 
-/**
- * Calls the ATC to first find the closing runway, and loop through it, putting all of its planes on new runways.  It then flattens the clearance list (temporarily), searches through it to find any planes from the closing runway, and reassign them to new runways, without re-enqueueing them.
- *
- * @param atc
- *            the AirTrafficControl object
- */
-private static void closeRunway(AirTrafficControl atc) throws IOException
-{
-    System.out.print("Enter runway: ");
-    String oldRunway = stdin.readLine();
-    System.out.println(oldRunway);
-
-    atc.runwayLoop(oldRunway, stdin);
-    if(atc.getClearance() != null)
+    /**
+     * Calls the ATC to first find the closing runway, and loop through it, putting all of its planes on new runways.  It then flattens the clearance list (temporarily), searches through it to find any planes from the closing runway, and reassign them to new runways, without re-enqueueing them.
+     *
+     * @param atc
+     *            the AirTrafficControl object
+     */
+    private static void closeRunway(AirTrafficControl atc) throws IOException
     {
-        atc.clearanceLoop(oldRunway, stdin);
-    }
+      
+	System.out.print("Enter runway: ");
+        String oldRunway = stdin.readLine();
+        System.out.println(oldRunway);
+	while(atc.findRunway(oldRunway) == null)
+	    {
+		System.out.println("No such runway!");
+		System.out.print("Enter runway: ");
+		oldRunway = stdin.readLine();
+		System.out.println(oldRunway);
+	    }
+        atc.runwayLoop(oldRunway, stdin);
+        if(atc.getClearance() != null)
+        {
+            atc.clearanceLoop(oldRunway, stdin);
+        }
 
 
 
-    System.out.println("Runway " + oldRunway + " has been closed.");
-}// end closeRunway
+        System.out.println("Runway " + oldRunway + " has been closed.");
+    }// end closeRunway
 }

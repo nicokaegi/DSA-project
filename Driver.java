@@ -245,10 +245,17 @@ public class Driver
      */
     private static void closeRunway(AirTrafficControl atc) throws IOException
     {
+
         System.out.print("Enter runway: ");
         String oldRunway = stdin.readLine();
         System.out.println(oldRunway);
-
+        while(atc.findRunway(oldRunway) == null)
+        {
+            System.out.println("No such runway!");
+            System.out.print("Enter runway: ");
+            oldRunway = stdin.readLine();
+            System.out.println(oldRunway);
+        }
         atc.runwayLoop(oldRunway, stdin);
         if(atc.getClearance() != null)
         {
