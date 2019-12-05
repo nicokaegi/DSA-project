@@ -16,7 +16,7 @@ import dependencies.ListIndexOutOfBoundsException;
 public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparable
     <? super KT>> implements AscendinglyOrderedListInterface<T, KT> {
     private static final int MAX_LIST = 3;
-    protected T []items;  // an array of list items
+    protected T[] items;  // an array of list items
     protected int numItems;  // number of items in list
     boolean success = false;
 
@@ -54,7 +54,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
                     items[pos+1] = items[pos];
                 } // end for
                 // insert new item
-                items[index] = item;
+                items[index] = (T) item;
                 numItems++;
             }
             else
@@ -78,7 +78,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         {
             if (index >= 0 && index < numItems)
             {
-                return items[index];
+                return (T) items[index];
             }
             else
             {
@@ -128,7 +128,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         //0,0 check, which messes EVERYTHING up.
         if (numItems == 1)
         {
-            if(item.getKey().compareTo(items[mid].getKey()) > 0)
+            if(item.getKey().compareTo((items[mid]).getKey()) > 0)
             {
                 return 1;
             }
@@ -141,7 +141,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         while (low < high)
         {
             mid = (low + high)/2;
-            if(item.getKey().compareTo(items[mid].getKey()) > 0)
+            if(item.getKey().compareTo((items[mid]).getKey()) > 0)
             {
                 low = mid + 1;
             }
@@ -159,7 +159,7 @@ public class AscendinglyOrderedList<T extends KeyedItem<KT>, KT extends Comparab
         else
         {
             success = false;
-            if(item.getKey().compareTo(items[low].getKey()) > 0)
+            if(item.getKey().compareTo((items[low]).getKey()) > 0)
             {
                 return high + 1;
             }
