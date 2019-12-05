@@ -1,0 +1,218 @@
+Welcome to the Airport program!
+Enter number of runways: 4
+1Enter the name of runway number 1: North
+2Enter the name of runway number 2: South
+3Enter the name of runway number 3: East
+4Enter the name of runway number 4: West
+Select from the following menu: 
+	0. End the program
+	1. Plane enters the system.
+	2. Plane takes off.
+	3. Plane is allowed to re-enter a runway.
+	4. Runway opens.
+	5. Runway closes.
+	6. Display info about planes waiting to take off.
+	7. Display info about planes waiting to be allowed to re-enter a runway.
+	8. Display number of planes who have taken off.
+
+	Enter your selection now : 1
+Enter flight number: Poke143
+Enter destination: Galar
+Enter runway: North
+Flight Poke143 is now waiting for takeoff on runway North.
+
+	Enter your selection now : 1
+Enter flight number: Poke543
+Enter destination: Hoenn
+Enter runway: South
+Flight Poke543 is now waiting for takeoff on runway South.
+
+	Enter your selection now : 3
+There are no planes waiting for clearance!
+
+	Enter your selection now : 4
+Enter the name of the new runway : NorthWestRunway NorthWest has opened.
+
+	Enter your selection now : 6
+These planes are waiting for takeoff on runway North
+Flight Poke143 to Galar.
+ These planes are waiting for takeoff on runway South
+Flight Poke543 to Hoenn.
+ No planes are waiting for takeoff on runway East!
+No planes are waiting for takeoff on runway West!
+No planes are waiting for takeoff on runway NorthWest!
+
+	Enter your selection now : 7
+No planes are waiting to be cleared to re-enter a runway!
+
+	Enter your selection now : 8
+0 planes have taken off from the airport
+
+	Enter your selection now : 1
+Enter flight number: Poke789
+Enter destination: Unova
+Enter runway: NorthWest
+Flight Poke789 is now waiting for takeoff on runway NorthWest.
+
+	Enter your selection now : 1
+Enter flight number: Poke323
+Enter destination: Kalos
+Enter runway: West
+Flight Poke323 is now waiting for takeoff on runway West.
+
+	Enter your selection now : 1
+Enter flight number: Hyrule342
+Enter destination: Kakariko
+Enter runway: NorthWest
+Flight Hyrule342 is now waiting for takeoff on runway NorthWest.
+
+	Enter your selection now : 1
+Enter flight number: Hyrule4224
+Enter destination: Death Mountain
+Enter runway: South
+Flight Hyrule4224 is now waiting for takeoff on runway South.
+
+	Enter your selection now : 1
+Enter flight number: Wily5433
+Enter destination: Wily's Fortress
+Enter runway: East
+Flight Wily5433 is now waiting for takeoff on runway East.
+
+	Enter your selection now : 6
+These planes are waiting for takeoff on runway North
+Flight Poke143 to Galar.
+ These planes are waiting for takeoff on runway South
+Flight Poke543 to Hoenn.
+ Flight Hyrule4224 to Death Mountain.
+ These planes are waiting for takeoff on runway East
+Flight Wily5433 to Wily's Fortress.
+ These planes are waiting for takeoff on runway West
+Flight Poke323 to Kalos.
+ These planes are waiting for takeoff on runway NorthWest
+Flight Poke789 to Unova.
+ Flight Hyrule342 to Kakariko.
+ 
+	Enter your selection now : 7
+No planes are waiting to be cleared to re-enter a runway!
+
+	Enter your selection now : 8
+0 planes have taken off from the airport
+
+	Enter your selection now : 2
+Is Flight Poke143  cleared for take off (Y/N): 
+
+N
+Flight Poke143 is now waiting to be allowed to re-enter a runway.
+
+	Enter your selection now : 2
+Is Flight Poke543  cleared for take off (Y/N): 
+
+Y
+Flight Poke543 has now taken off from runway South
+
+	Enter your selection now : 2
+Is Flight Wily5433  cleared for take off (Y/N): 
+
+N
+Flight Wily5433 is now waiting to be allowed to re-enter a runway.
+
+	Enter your selection now : 2
+Is Flight Poke323  cleared for take off (Y/N): 
+
+Y
+Flight Poke323 has now taken off from runway West
+
+	Enter your selection now : 1
+Enter flight number: Wily323
+Enter destination: Crash Man
+Enter runway: South
+Flight Wily323 is now waiting for takeoff on runway South.
+
+	Enter your selection now : 1
+Enter flight number: Hyrule3002
+Enter destination: Zora Kingdom
+Enter runway: NorthWest
+Flight Hyrule3002 is now waiting for takeoff on runway NorthWest.
+
+	Enter your selection now : 5
+Enter runway: NorthWest
+Enter new runway for plane Poke789 : North
+Flight Poke789 is now waiting for takeoff on runway North
+Enter new runway for plane Hyrule342 : North
+Flight Hyrule342 is now waiting for takeoff on runway North
+Enter new runway for plane Hyrule3002 : North
+Flight Hyrule3002 is now waiting for takeoff on runway North
+Runway NorthWest has been closed.
+
+	Enter your selection now : 6
+These planes are waiting for takeoff on runway North
+Flight Poke789 to Unova.
+ Flight Hyrule342 to Kakariko.
+ Flight Hyrule3002 to Zora Kingdom.
+ These planes are waiting for takeoff on runway South
+Flight Hyrule4224 to Death Mountain.
+ Flight Wily323 to Crash Man.
+ No planes are waiting for takeoff on runway East!
+No planes are waiting for takeoff on runway West!
+No planes are waiting for takeoff on runway NorthWest!
+
+	Enter your selection now : 7
+These planes are waiting to be cleared to re-enter a runway:
+Flight Poke143 to Galar.
+Flight Wily5433 to Wily's Fortress.
+
+
+	Enter your selection now : 8
+2 planes have taken off from the airport
+
+	Enter your selection now : 2
+Is Flight Poke789  cleared for take off (Y/N): 
+
+Y
+Flight Poke789 has now taken off from runway North
+
+	Enter your selection now : 2
+Is Flight Hyrule4224  cleared for take off (Y/N): 
+
+Y
+Flight Hyrule4224 has now taken off from runway South
+
+	Enter your selection now : 2
+Is Flight Hyrule342  cleared for take off (Y/N): 
+
+Y
+Flight Hyrule342 has now taken off from runway North
+
+	Enter your selection now : 2
+Is Flight Wily323  cleared for take off (Y/N): 
+
+Y
+Flight Wily323 has now taken off from runway South
+
+	Enter your selection now : 2
+Is Flight Hyrule3002  cleared for take off (Y/N): 
+
+Y
+Flight Hyrule3002 has now taken off from runway North
+
+	Enter your selection now : 2
+No plane on any runway!
+
+	Enter your selection now : 6
+No planes are waiting for takeoff on runway North!
+No planes are waiting for takeoff on runway South!
+No planes are waiting for takeoff on runway East!
+No planes are waiting for takeoff on runway West!
+No planes are waiting for takeoff on runway NorthWest!
+
+	Enter your selection now : 7
+These planes are waiting to be cleared to re-enter a runway:
+Flight Poke143 to Galar.
+Flight Wily5433 to Wily's Fortress.
+
+
+	Enter your selection now : 8
+7 planes have taken off from the airport
+
+	Enter your selection now : 0
+The Airport is closing : Bye Bye....
