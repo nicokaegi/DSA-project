@@ -191,7 +191,8 @@ public class Driver
     private static void reEnterPlane(AirTrafficControl atc) throws IOException
     {
         boolean cleared = false;
-        if(!atc.getClearance().isEmpty())
+
+       if(!atc.getClearance().isEmpty())
         {
             while(!cleared)
             {
