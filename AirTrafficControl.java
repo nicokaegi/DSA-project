@@ -12,29 +12,21 @@
  */
 import java.io.*;
 
-import dependencies.ListArrayBasedPlus;
-import dependencies.AscendinglyOrderedList;
-
 public class AirTrafficControl
 {
-    /** List of current runways **/
-
+    /** List of current runways */
     private ListArrayBasedPlus<Runway> runways;
 
-    /** Binary Search Tree that holds all planes waiting for clearance to launch **/
-
+    /** AscendinglyOrderedList that holds all planes waiting for clearance to launch */
     private AscendinglyOrderedList<Plane<?>, String> clearance = new AscendinglyOrderedList<Plane<?>, String>();
 
-    /**Integer counting how many planes have taken off **/
-
+    /**Integer counting how many planes have taken off */
     private int count = 0;
 
-    /** Integer keeping our position when planes take off from runways that they may be incremented in a round robin fashion**/
-
+    /** Integer keeping our position when planes take off from runways that they may be incremented in a round robin fashion*/
     private int position = 0;
 
-    /** Int holding the total amount of runways we have, so we may always find the end index. **/
-
+    /** Int holding the total amount of runways we have, so we may always find the end index. */
     private int totalRunways = 0;
 
     public AirTrafficControl()
@@ -55,6 +47,7 @@ public class AirTrafficControl
 
     /**
      * Method to take in a string representation of a runway name, and search the runway list to locate it.
+     * @author Nico Kaegi
      * @param runwayName
      * 		The runway we are searching for
      * @return the located runway
@@ -78,6 +71,7 @@ public class AirTrafficControl
 
     /**
      * Method to enter a plane that has been created into an already existing runway.
+     * @author Nico Kaegi
      * @param newPlane
      * 		the plane we are entering into a runway
      * @return whether the plane successfully entered or not.
@@ -99,6 +93,7 @@ public class AirTrafficControl
     }
     /**
      * Method to add a new runway at the end of the runway list, then return whether it was successful.
+     * @author Nico Kaegi
      * @param name
      * 	A string representation of a runway name
      * @return whether the runway was added or not
@@ -138,6 +133,7 @@ public class AirTrafficControl
 
     /**
      * Method that accepts whether a plane has clearance to launch or not, and then either launches it, or puts it in the clearance list.
+     * @author Nico Kaegi
      * @param clearnce
      * 		Whether the plane has clearance to launch
      */
@@ -223,6 +219,7 @@ public class AirTrafficControl
      * Method to have a plane from the clearance list re-enter a runway
      *
      * This is done by creating a temporary plane, retrieving the plane from the clearance list by searching by it's flight number, re-enqueuing it if it exists at all, then deleting it from the clearance list.
+     * @author Theresa Morris
      *
      * @param flight
      * 		The flight number of the plane we are looking for.
@@ -252,6 +249,7 @@ public class AirTrafficControl
 
     /**
      * Method to loop through the runway being closed to reassign all planes to new runways.
+     * @author Theresa Morris
      * @param oldRunway
      * 		The runway being closed down
      * @param stdin
@@ -294,6 +292,7 @@ public class AirTrafficControl
 
     /**
      * Method to look through the clearance list for any runway matching the closing runway, then reassign any of those planes to new runways, without re-enqueueing them for launch.
+     * @author Theresa Morris
      * @param oldRunway
      * 		The runway being closed
      * @param stdin
@@ -333,6 +332,7 @@ public class AirTrafficControl
         }
     }
     /**
+     * @author Theresa Morris
      * A method to print out the amount of planes who have taken off.
      */
     public void printCount()
@@ -341,6 +341,7 @@ public class AirTrafficControl
     }
 
     /**
+     * @author Theresa Morris
      * A method to print everything waiting on the clearance list for takeoff.
      */
     public void printClearance()
@@ -358,6 +359,7 @@ public class AirTrafficControl
     }
 
     /**
+     * @author Theresa Morris
      * A method to print everything currently waiting on all of the runways.
      */
     public void printRunways()
@@ -378,6 +380,7 @@ public class AirTrafficControl
     }
 
     /**
+     * @author Theresa Morris
      * A method to delete a runway from the list
      * @param runway the runway we are looking to delete
      */
@@ -391,8 +394,10 @@ public class AirTrafficControl
     }
 
     /**
+     * @author Theresa Morris
      *A method to find the INDEX of the runway we are looking to delete.
      *@param runway the runway we are looking to delete
+     *@return the index our runway is at in the runway list
      */
     public Integer findRunwayIndex(String runway)
     {

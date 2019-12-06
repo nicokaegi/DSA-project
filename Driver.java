@@ -14,37 +14,36 @@
 
 import java.io.*;
 
-
-
 public class Driver
+  
 {
-    /** BufferedReader to intake our keyboard input **/
+    /** BufferedReader to intake our keyboard input */
     static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String args[]) throws IOException
     {
-        /** boolean for use of the menu - determines if we are done, or not **/
+        /** boolean for use of the menu - determines if we are done, or not */
         Boolean quit = false;
-        /** AirTrafficControl holds most of our control methods **/
+        /** AirTrafficControl holds most of our control methods */
         AirTrafficControl atc = new AirTrafficControl();
-        /** String flightNumber used for creating new planes **/
+        /** String flightNumber used for creating new planes */
         String flightNumber;
-        /** String destination used for creating new planes **/
+        /** String destination used for creating new planes */
         String destination;
-        /** String runway used for creating new planes **/
+        /** String runway used for creating new planes */
         String runway;
-        /** Boolean determining if a plane is successfully added **/
+        /** Boolean determining if a plane is successfully added */
         boolean succeful;
-        /** integer holding our int from setting up initial runways **/
+        /** integer holding our int from setting up initial runways */
         int intHolder;
-        /** String holding our initial runway names **/
+        /** String holding our initial runway names */
         String stringHolder;
-        /** Temporary plane used for creating new planes **/
+        /** Temporary plane used for creating new planes */
         Plane planeHolder;
 
 
         System.out.println("Welcome to the Airport program!");
-        //Initial runway setup
+        //Initial runway setup - Nico Kaegi
         System.out.print("Enter number of runways: ");
 
         intHolder = Integer.parseInt(stdin.readLine());
@@ -95,6 +94,7 @@ public class Driver
                 break;
             case 1:
                 //Case 1:  Enter new plane into system
+		// Nico Kaegi
                 System.out.print("Enter flight number: ");
                 String newFlight = stdin.readLine();
                 System.out.println(newFlight);
@@ -119,6 +119,7 @@ public class Driver
                 break;
             case 2:
                 //Case 2: Plane takes off in a round robin style
+		//Nico Kaegi
                 planeHolder = atc.currentTakeOfPlane();
 
                 if(planeHolder != null) {
@@ -182,7 +183,7 @@ public class Driver
     }// End main
     /**
      * Calls the ATC to search through the clearance list, find the relevant plane, and put it back on its runway if it is now clear for takeoff
-     *
+     * @author Theresa Morris
      * @param atc
      *            the AirTrafficControl object
      */
@@ -191,7 +192,7 @@ public class Driver
     {
         boolean cleared = false;
 
-       if(!atc.getClearance().isEmpty())
+        if(!atc.getClearance().isEmpty())
         {
             while(!cleared)
             {
@@ -220,7 +221,7 @@ public class Driver
     }// end reEnterPlane
     /**
      * Calls the ATC to add a new runway
-     *
+     * @author Theresa Morris
      * @param atc
      *            the AirTrafficControl object
      */
@@ -244,7 +245,7 @@ public class Driver
 
     /**
      * Calls the ATC to first find the closing runway, and loop through it, putting all of its planes on new runways.  It then flattens the clearance list (temporarily), searches through it to find any planes from the closing runway, and reassign them to new runways, without re-enqueueing them.
-     *
+     * @author Theresa Morris
      * @param atc
      *            the AirTrafficControl object
      */

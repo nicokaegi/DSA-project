@@ -9,12 +9,11 @@
  *
  * @author: Nico Kaegi - Section 2
  *
- * @version: 2019.12.04 
+ * @version: 2019.12.04
  */
 
 import java.io.*;
 
-import dependencies.ListArrayBasedPlus;
 
 
 public class Driver
@@ -191,7 +190,8 @@ public class Driver
     private static void reEnterPlane(AirTrafficControl atc) throws IOException
     {
         boolean cleared = false;
-        if(!atc.getClearance().isEmpty())
+
+       if(!atc.getClearance().isEmpty())
         {
             while(!cleared)
             {
@@ -199,14 +199,12 @@ public class Driver
                 String flight = stdin.readLine();
                 System.out.println(flight);
                 Plane searchPlane = new Plane(flight, null, null);
-                              
+
                 if(atc.getClearance().search(searchPlane) >= 0)
                 {
-                  
                     try
                     {
                         cleared = atc.reEnterRunway(searchPlane);
-
                     }
                     catch (Exception e)
                     {
@@ -230,7 +228,7 @@ public class Driver
     {
         System.out.print("Enter the name of the new runway : ");
         String newRunway = stdin.readLine();
-        System.out.print(newRunway);
+        System.out.println(newRunway);
 
         while(!(atc.addRunWay(newRunway)))
         {
@@ -238,7 +236,7 @@ public class Driver
 
             System.out.print("Enter the name of the new runway : ");
             newRunway = stdin.readLine();
-            System.out.print(newRunway);
+            System.out.println(newRunway);
 
         }
         System.out.println("Runway " + newRunway + " has opened.");

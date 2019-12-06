@@ -11,13 +11,13 @@
  *
  * @version: 2019.12.04
  */
-import dependencies.QueueSLS;
+
 
 public class Runway
 {
-    /**A string holding the runway name **/
+    /**A string holding the runway name */
     String name;
-    /**A queue holding all of the planes waiting for takeoff from this runway **/
+    /**A queue holding all of the planes waiting for takeoff from this runway */
     QueueSLS<Plane> planes;
 
     public Runway(String name) {

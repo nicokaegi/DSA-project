@@ -2,10 +2,10 @@
 
 We plan to use three ADTs, as follows:
     ListRAB runways (we originally thought of using a CDLS, until we realized that using a list with a position integer updated via a modulus avoids repeated traversal)
-    ListRAB clearance (direct index access for sorting and searching - our intent is to sort flights into that list by lexicographic order of flight names)
+    AscendinglySortedList clearance (direct index access for sorting and searching - our intent is to sort flights into that list by lexicographic order of flight names)
     QueueSLS Planes (held in Runway class, we only need to care about the front for taking off, and the back for adding new planes)
 
-4-5 classes would be created(depending on us doing the extra credit):
+4 classes were created, counting our driver.
 
 To hold all the information regarding planes themselves, we have the plane class.  They hold the name of their runway for convenience with the clearance list, essentially.  When we remove them from their runway, we want to maintain what runway they came from for putting them back in, later.  It is worth the space tradeoff to hold the runway name.  This also makes the toString method more convenient.
 
@@ -25,13 +25,11 @@ Runway:
         add/remove plane
         Accessers and mutators
 
-Related to the runway class, we have the TakeOff and Landing classes:  These are intended to hold operations that ONLY affect either takeoff or landing.  We will likely fold takeoff into runway, if we do not end up doing the extra credit, but we felt it wiser to plan for them from the beginning.
-
-Finally, we are making an AirTrafficControl object - This is with future expandability in mind - potentially the ability to control several airports from one location.  This also makes the driver cleaner.  This class will hold our list (Array based) of runways.  We chose ListRAB because we want the direct index access offered by it.  This will make the round robin style of takeoff easier to deal with.  We also hold a list, also array based (for direct index access - we are sorting this lexicographically by flight number, so that when we search for flight numbers, it will take less work overall.  This will make the option to change runways slightly more of a pain, but with evaluation, it was determined that searching for a flight number to take something off of this list would be more common than closing a runway, so we optimize for the more common operation.
+Finally, we are making an AirTrafficControl object - This is with future expandability in mind - potentially the ability to control several airports from one location.  This also makes the driver cleaner.  This class will hold our list (Array based) of runways.  We chose ListRAB because we want the direct index access offered by it.  This will make the round robin style of takeoff easier to deal with.  We also hold a list, also array based (for direct index access - we are sorting this lexicographically by flight number, so that when we search for flight numbers, it will take less work overall. (For this reason, we went with the ascendingly sorted list, from lab 8) This will make the option to change runways slightly more of a pain, but with evaluation, it was determined that searching for a flight number to take something off of this list would be more common than closing a runway, so we optimize for the more common operation.
 
 AirTrafficControl:
         ListRAB runways
-        ListRAB clearance
+        AscendinglySortedList clearance
         Int count
         Int position
 Driver:
